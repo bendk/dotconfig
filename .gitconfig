@@ -1,0 +1,16 @@
+[user]
+	name = Ben Dean-Kawamura
+	email = ben@pculture.org
+[alias]
+	ci = commit
+	st = status
+	co = checkout
+[color]
+	status = true
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 1014x927+178+37
+	history-view-vpane-position = 722
+	file-view-vpane-position = 673
+	main-window-view = FileView
+	show-graph = true
