@@ -63,6 +63,7 @@ syntax enable
 :autocmd FileType vo_base colorscheme vo_dark
 :autocmd FileType vo_base set guifont=Monospace\ 18
 :autocmd FileType vo_base set nolist
+:autocmd FileType gitcommit set tw=70
 
 set path+=/usr/local/gtk2/include/gtk-2.0
 
