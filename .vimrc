@@ -49,6 +49,7 @@ syntax enable
 :autocmd FileType cpp call Programming_settings()
 :autocmd FileType cpp call C_Settings()
 :autocmd FileType java call Programming_settings()
+:autocmd FileType javascript call Programming_settings()
 :autocmd FileType python call Programming_settings()
 :autocmd FileType pyrex call Programming_settings()
 :autocmd FileType pov call Programming_settings()
