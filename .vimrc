@@ -44,6 +44,9 @@ filetype indent on
 filetype plugin indent on
 syntax enable
 
+" Needed to enable latex-suite on empty .tex files
+let g:tex_flavor='latex'
+
 :autocmd FileType c call Programming_settings()
 :autocmd FileType c call C_Settings()
 :autocmd FileType cpp call Programming_settings()
