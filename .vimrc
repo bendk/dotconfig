@@ -60,6 +60,7 @@ let g:tex_flavor='latex'
 
 :autocmd FileType html call HTML_settings()
 :autocmd FileType css call HTML_settings()
+:autocmd FileType scss call HTML_settings()
 :autocmd FileType htmldjango call HTML_settings()
 :autocmd FileType xhtml call HTML_settings()
 :autocmd FileType psp call HTML_settings()
