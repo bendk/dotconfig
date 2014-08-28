@@ -66,6 +66,8 @@ let g:tex_flavor='latex'
 :autocmd FileType psp call HTML_settings()
 :autocmd FileType htmlcheetah call HTML_settings()
 
+:autocmd FileType rst call ReST_settings()
+
 :autocmd FileType vo_base colorscheme vo_dark
 :autocmd FileType vo_base set guifont=Monospace\ 18
 :autocmd FileType vo_base set nolist
@@ -92,7 +94,11 @@ function Programming_settings()
   " tab rejustifies a line
   set indentkeys+=!^F
   nnoremap <Tab> i<C-f><Down><Esc>
+endfunction
 
+function ReST_settings()
+  set sw=4
+  set sts=4
 endfunction
 
 function C_Settings()
