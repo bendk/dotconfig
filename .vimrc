@@ -59,8 +59,8 @@ let g:tex_flavor='latex'
 :autocmd FileType htmlcheetah call Programming_settings()
 
 :autocmd FileType html call HTML_settings()
-:autocmd FileType css call HTML_settings()
-:autocmd FileType scss call HTML_settings()
+:autocmd FileType css call HTML_settings(4)
+:autocmd FileType scss call HTML_settings(4)
 :autocmd FileType htmldjango call HTML_settings()
 :autocmd FileType xhtml call HTML_settings()
 :autocmd FileType psp call HTML_settings()
@@ -75,9 +75,9 @@ let g:tex_flavor='latex'
 
 set path+=/usr/local/gtk2/include/gtk-2.0
 
-function HTML_settings()
+function HTML_settings(...)
+  let &sw = a:0 > 0 ? a:1 : 2
   set smarttab
-  set sw=4
   set softtabstop=4
   set textwidth=0
   set indentkeys+=!^F
