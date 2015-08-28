@@ -14,3 +14,5 @@
 	file-view-vpane-position = 673
 	main-window-view = FileView
 	show-graph = true
+[push]
+	default = current
