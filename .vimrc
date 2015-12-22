@@ -1,108 +1,96 @@
-" dvorak friendly remappings
-noremap u j
-noremap e k
-noremap E e
-noremap t l
-noremap U u
-noremap ze zk
-noremap zu zj
+" smash escape
+inoremap jk <Esc>
 
+" Leader mappings
+let mapleader=","
+" Buffers
+nnoremap <silent> <Leader>b :BufExplorer<CR>
+" Yank History
+noremap <Leader>y :Yanks<cr>
+" Leader mapping help
+nmap <Leader>h <Plug>(FollowMyLead)
+nmap <Leader>u :UndoTreeToggle<cr>
+" Close Window
+nmap <Leader>w :bd<CR>
+" Format paragraph
+nmap <Leader>f gqip
+" Toggle Search highlight
+nmap <Leader>i :set hlsearch!<cr>
+" Change list
+nmap <Leader>cl :cl<cr>
+" Next change
+nmap <Leader>cn :cn<cr>
+" Previous change
+nmap <Leader>cp :cp<cr>
+" Current change
+nmap <Leader>cc :cc<cr>
+" Prev yank
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+" Next yank
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
-" I like to open the entire fold at once
-noremap zo zO
-noremap zc zC
-
-
-" justify an entire paragraph with 'j'
-noremap j gq}
-
-" Some keybindings that from EMACS that I can't go without
-inoremap <C-E> <End>
-inoremap <C-A> <Home>
-inoremap <C-l> <C-[>
-
-" Better filename completion
-cnoremap <Tab> <C-L><C-D>
+" Autocomplete with tab
+inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-p>" : "\<lt>Tab>"<CR>
+" move by lines
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Various settings that I like
-set backspace=eol,start,indent
-set is
-set autoindent
-set textwidth=78
-set whichwrap=b,s,h,l
+set completeopt=menuone
+set ignorecase
+set smartcase
+set hlsearch
 set list
 set listchars=tab:>-,trail:-,extends:\
-set ruler
-set showmatch
-set hlsearch
+set mouse=""
 set expandtab
+set wildmode=longest:full
 set wildmenu
-hi Search term=standout ctermfg=Black ctermbg=Yellow guifg=Black guibg=Yellow
-
+colorscheme peachpuff
 filetype on
 filetype indent on
 filetype plugin indent on
 syntax enable
 
-" Needed to enable latex-suite on empty .tex files
-let g:tex_flavor='latex'
+augroup LongLines
+  autocmd!
+  autocmd Filetype * match none
+  autocmd Filetype python match ErrorMsg '\%>80v.\+'
+augroup END
 
-:autocmd FileType c call Programming_settings()
-:autocmd FileType c call C_Settings()
-:autocmd FileType cpp call Programming_settings()
-:autocmd FileType cpp call C_Settings()
-:autocmd FileType java call Programming_settings()
-:autocmd FileType javascript call Programming_settings()
-:autocmd FileType python call Programming_settings()
-:autocmd FileType pyrex call Programming_settings()
-:autocmd FileType pov call Programming_settings()
-:autocmd FileType htmlcheetah call Programming_settings()
+" Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'bendk/vim-follow-my-lead'
+Plug 'bling/vim-airline'
+Plug 'jamessan/vim-gnupg'
+Plug 'justinmk/vim-sneak'
+Plug 'mattn/emmet-vim'
+Plug 'SirVer/ultisnips'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/DeleteTrailingWhitespace'
+Plug 'vim-scripts/undotree.vim'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'rking/ag.vim'
+call plug#end()
 
-:autocmd FileType html call HTML_settings()
-:autocmd FileType css call HTML_settings(4)
-:autocmd FileType scss call HTML_settings(4)
-:autocmd FileType htmldjango call HTML_settings()
-:autocmd FileType xhtml call HTML_settings()
-:autocmd FileType psp call HTML_settings()
-:autocmd FileType htmlcheetah call HTML_settings()
+let g:UltiSnipsExpandTrigger = "<C-t>"
+let g:UltiSnipsListSnippets = "<C-s>"
+let UltiSnipsJumpForwardTrigger = "<C-t>"
+let UltiSnipsJumpForwardTrigger = "<C-h>"
 
-:autocmd FileType rst call ReST_settings()
-
-:autocmd FileType vo_base colorscheme vo_dark
-:autocmd FileType vo_base set guifont=Monospace\ 18
-:autocmd FileType vo_base set nolist
-:autocmd FileType gitcommit set tw=70
-
-set path+=/usr/local/gtk2/include/gtk-2.0
-
-function HTML_settings(...)
-  let &sw = a:0 > 0 ? a:1 : 2
-  set smarttab
-  set softtabstop=4
-  set textwidth=0
-  set indentkeys+=!^F
-  nnoremap <Tab> i<C-f><Down><Esc>
-endfunction
-
-function Programming_settings()
-" Settings I like for programming
-  set fo=tcrq
-  set shiftwidth=4
-  set softtabstop=4
-  set autowrite
-
-  " tab rejustifies a line
-  set indentkeys+=!^F
-  nnoremap <Tab> i<C-f><Down><Esc>
-endfunction
-
-function ReST_settings()
-  set sw=4
-  set sts=4
-endfunction
-
-function C_Settings()
-  set cino=(0,t0
-  set sts=8
-  set sw=8
-endfunction
+" Plugin Settings
+let g:gitgutter_map_keys = 0
+let g:yankstack_map_keys = 0
+let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerDefaultHelp=0
+let g:yankstack_yank_keys = ['c', 'C', 'd', 'D', 'y', 'Y']
+let g:deoplete#enable_at_startup = 1
