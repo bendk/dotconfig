@@ -79,6 +79,7 @@ Plug 'vim-scripts/undotree.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'hynek/vim-python-pep8-indent'
+Plug 'chase/vim-ansible-yaml'
 Plug 'rking/ag.vim'
 call plug#end()
 

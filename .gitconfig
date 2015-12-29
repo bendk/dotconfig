@@ -16,3 +16,5 @@
 	show-graph = true
 [push]
 	default = current
+[core]
+        editor = vim
