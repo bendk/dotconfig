@@ -17,4 +17,4 @@
 [push]
 	default = current
 [core]
-        editor = vim
+        editor = nvim
