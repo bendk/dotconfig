@@ -1,0 +1,24 @@
+snippet for "For templatetag"
+{% for $1 %}
+  $2
+{% endfor %}
+
+endsnippet
+
+snippet b "block templatetag"
+{% block $1 %}
+$2
+{% endblock %}
+endsnippet
+
+snippet c "comment"
+{# $1 #}
+endsnippet
+
+snippet t "trans templatetag" w
+{% trans "$1" %}
+endsnippet
+
+snippet bt "blocktrans templatetag" w
+{% blocktrans $1 %}$2{% endblocktrans %}
+endsnippet
