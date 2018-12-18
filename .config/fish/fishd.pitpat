@@ -5,8 +5,10 @@ SET Z_CMD:z
 SET Z_DATA:/home/ben/\x2ez
 SET Z_EXCLUDE:/home/ben
 SET __fish_init_1_50_0:\x1d
+SET __fish_init_2_39_8:\x1d
 SET __fish_init_2_3_0:\x1d
 SET fish_color_autosuggestion:555\x1eyellow
+SET fish_color_cancel:\x2dr
 SET fish_color_command:005fd7\x1epurple
 SET fish_color_comment:red
 SET fish_color_cwd:green
