@@ -206,6 +206,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'dag/vim-fish'
 Plug 'chase/vim-ansible-yaml'
 Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 let g:UltiSnipsExpandTrigger = "<C-t>"
