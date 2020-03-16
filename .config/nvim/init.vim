@@ -152,6 +152,7 @@ let g:lion_squeeze_spaces = 1
 " Don't go into ex mode
 nmap Q <nop>
 " Various settings that I like
+set backupcopy=yes
 set completeopt=menuone
 set ignorecase
 set smartcase
