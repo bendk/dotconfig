@@ -1,0 +1,35 @@
+snippet t
+test('${1:name}', () => {
+  $2
+});$3
+endsnippet
+
+snippet d
+describe('${1:name}', () => {
+  $2
+});
+endsnippet
+
+snippet be
+beforeEach(() => {
+  $1
+});
+endsnippet
+
+snippet ae
+afterEach(() => {
+  $1
+});
+endsnippet
+
+snippet ba
+beforeAll(() => {
+  $1
+});
+endsnippet
+
+snippet aa
+afterAll(() => {
+  $1
+});
+endsnippet
