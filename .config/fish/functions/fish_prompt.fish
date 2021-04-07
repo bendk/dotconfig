@@ -17,7 +17,9 @@ set __fish_git_prompt_char_stateseparator "["
 function fish_prompt
   fish_prompt_host
   fish_prompt_directory
-  fish_prompt_git
+  if not set -q FISH_DISABLE_GIT_PROMPT
+    fish_prompt_git
+  end
   fish_prompt_final
 end
 
