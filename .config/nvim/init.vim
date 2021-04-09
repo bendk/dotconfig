@@ -6,8 +6,8 @@ nmap <Leader>h <Plug>(FollowMyLead)
 nmap <Leader>u :UndoTreeToggle<cr>
 " oPen file
 nmap <Leader>p :CtrlPMixed<CR>
-" Delete Trailing Whitespace
-nmap <Leader>w :DeleteTrailingWhitespace<CR>
+" Switch window
+nmap <Leader>w <C-W>w
 " Format paragraph
 nmap <Leader>f gqip
 " Next buffer
@@ -49,8 +49,6 @@ map h <Nop>
 map l <Nop>
 " Jump tag
 noremap jt *
-" Jump definition
-noremap jd <C-]>
 " Jump match
 noremap jm %
 " Jump end
@@ -78,11 +76,16 @@ nmap jks <Plug>AirlineSelectTab4
 nmap jkg <Plug>AirlineSelectTab5
 nmap jkc <Plug>AirlineSelectTab6
 nmap jkr <Plug>AirlineSelectTab7
-nmap jkm <Plug>AirlineSelectTab8
+map jkm <Plug>AirlineSelectTab8
 nmap jkv <Plug>AirlineSelectTab9
 " Swap arg left
 nnoremap kl :SidewaysLeft<CR>
 nnoremap kr :SidewaysRight<CR>
+" LSP
+nnoremap <silent> jd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> ji    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> jy   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> <Leader>r  <cmd>lua vim.lsp.buf.references()<CR>
 
 omap k <Plug>SidewaysArgumentTextobjA
 xmap k <Plug>SidewaysArgumentTextobjA
@@ -124,9 +127,6 @@ nmap , <Plug>(clever-f-repeat-back)
 " Emmet
 let g:user_emmet_expandabbr_key = '<C-e>'
 imap <C-o> <C-e><Enter><Enter><Up><Tab>
-" Buffer Jump
-" nmap <Space> <Plug>BufferjumpStart
-
 let completeopt="menuone,longest,preview"
 " vim-gnupg
 let g:GPGExecutable="gpg2"
@@ -196,7 +196,6 @@ Plug 'vim-scripts/DeleteTrailingWhitespace'
 Plug 'vim-scripts/undotree.vim'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mileszs/ack.vim'
-Plug '~/vim-bufferjump'
 Plug 'wellle/targets.vim'
 Plug 'FooSoft/vim-argwrap'
 Plug 'jeetsukumaran/vim-indentwise'
@@ -208,6 +207,7 @@ Plug 'dag/vim-fish'
 Plug 'chase/vim-ansible-yaml'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'pangloss/vim-javascript'
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 let g:UltiSnipsExpandTrigger = "<C-t>"
@@ -222,3 +222,10 @@ let g:yankstack_yank_keys = ['c', 'C', 'd', 'D', 'y', 'Y']
 " colors
 set termguicolors
 colorscheme bdk
+
+" LSP setup
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+EOF
