@@ -26,6 +26,8 @@ nmap <Leader>cp :cp<cr>
 nmap <Leader>cc :cc<cr>
 " Close changelist
 nmap <Leader>cd :cclose<cr>
+nmap <leader>dp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+nmap <leader>dn <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 " Prev yank
 nmap <leader>y <Plug>yankstack_substitute_older_paste
 " Next yank
@@ -127,7 +129,8 @@ nmap , <Plug>(clever-f-repeat-back)
 " Emmet
 let g:user_emmet_expandabbr_key = '<C-e>'
 imap <C-o> <C-e><Enter><Enter><Up><Tab>
-let completeopt="menuone,longest,preview"
+set completeopt=menuone,noinsert
+set shortmess+=c
 " vim-gnupg
 let g:GPGExecutable="gpg2"
 " vim-ack
@@ -153,7 +156,6 @@ let g:lion_squeeze_spaces = 1
 nmap Q <nop>
 " Various settings that I like
 set backupcopy=yes
-set completeopt=menuone
 set ignorecase
 set smartcase
 set hidden
@@ -201,6 +203,7 @@ Plug 'FooSoft/vim-argwrap'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'tommcdo/vim-lion'
+Plug 'nvim-lua/completion-nvim'
 " syntax
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'dag/vim-fish'
@@ -225,7 +228,17 @@ colorscheme bdk
 
 " LSP setup
 
+set scl=yes
+sign define LspDiagnosticsSignError text=! texthl=LspDiagnosticsSignError linehl= numhl=
 lua << EOF
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.rust_analyzer.setup{}
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    update_in_insert = false
+  }
+)
+require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
 EOF
