@@ -18,6 +18,5 @@
 	default = current
 [core]
         editor = nvim
-[cinnabar]
-	version-check = 1617809748
-	helper = /home/ben/src/git-cinnabar/git-cinnabar-helper
+[include]
+        path = ~/.gitconfig-local
