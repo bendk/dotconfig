@@ -93,6 +93,7 @@ call s:HL('SpecialKey', 'acadia', 'bg')
 call s:HL('Search', 'darkred', 'mustard')
 call s:HL('IncSearch', 'darkred', 'mustard')
 
+call s:HL('SignColumn', 'white', 'greypearl')
 call s:HL('Error', 'white', 'darkred')
 call s:HL('ErrorMsg', 'white', 'darkred')
 call s:HL('WarningMsg', 'white', 'darkred')
