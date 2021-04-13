@@ -27,6 +27,7 @@ nmap <Leader>cc :cc<cr>
 " Close changelist
 nmap <Leader>cd :cclose<cr>
 nmap <leader>dp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+nmap <leader>dd <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 nmap <leader>dn <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 " Prev yank
 nmap <leader>y <Plug>yankstack_substitute_older_paste
