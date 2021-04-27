@@ -86,7 +86,7 @@ nnoremap kl :SidewaysLeft<CR>
 nnoremap kr :SidewaysRight<CR>
 " LSP
 nnoremap <silent> jd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> ji    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> jp    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> jy   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> <Leader>r  <cmd>lua vim.lsp.buf.references()<CR>
 
