@@ -43,6 +43,7 @@ vmap <leader>c "+y
 nmap <leader>v "+p
 " Paste above
 nmap <leader>V "+P
+nmap <leader>t :syntax sync fromstart<cr>
 
 " Other mappings, not related to plugins:
 " I use the arrow keys to move around.  Remap them to more useful things
