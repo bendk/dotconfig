@@ -11,7 +11,7 @@ class UserError(Exception):
     pass
 
 CONFIG_DIR =  Path.home() / '.config/vim-pack'
-CONFIG_PATH = CONFIG_DIR / 'config.json'
+CONFIG_PATH = CONFIG_DIR / 'config'
 PACKAGE_ROOT = Path.home() / '.local/share/nvim/site/pack/vim-pack'
 START_DIR = PACKAGE_ROOT / 'start'
 OPT_DIR = PACKAGE_ROOT / 'opt'
