@@ -68,7 +68,6 @@ map jIU <Plug>(IndentWisePreviousLesserIndent)
 map jII <Plug>(IndentWisePreviousEqualIndent)
 map jID <Plug>(IndentWisePreviousGreaterIndent)
 map jIB <Plug>(IndentWiseBlockScopeBoundaryBegin)
-map jiu <Plug>(IndentWiseNextLesserIndent)
 map jii <Plug>(IndentWiseNextEqualIndent)
 map jid <Plug>(IndentWiseNextGreaterIndent)
 map jib <Plug>(IndentWiseBlockScopeBoundaryEnd)
@@ -95,6 +94,8 @@ omap k <Plug>SidewaysArgumentTextobjA
 xmap k <Plug>SidewaysArgumentTextobjA
 
 " Airline
+let g:airline_symbols = {}
+let g:airline_symbols.branch = '⎇ '
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -213,11 +214,28 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'neovim/nvim-lspconfig'
+Plug 'rafamadriz/friendly-snippets'
+Plug 'hrsh7th/vim-vsnip'
 call plug#end()
 
-let g:UltiSnipsExpandTrigger = "<C-t>"
-let UltiSnipsJumpForwardTrigger = "<C-t>"
-let UltiSnipsJumpBackwardTrigger = "<C-h>"
+" " Expand
+" imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+" smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-t>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-t>'
+smap <expr> <C-t>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-t>'
+
+" " Jump forward or backward
+" imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+" smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+" imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+" smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+
+" let g:UltiSnipsExpandTrigger = "<C-t>"
+" let UltiSnipsJumpForwardTrigger = "<C-t>"
+" let UltiSnipsJumpBackwardTrigger = "<C-h>"
 
 " Plugin Settings
 let g:gitgutter_map_keys = 0
