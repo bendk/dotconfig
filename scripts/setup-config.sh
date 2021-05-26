@@ -1,4 +1,6 @@
 #!/bin/sh
 
+set -ex
+
 mkdir -p ~/.ssh
-ln -s ~/.config/ssh/config ~/.ssh/config
+ln -sf ~/.config/ssh/config ~/.ssh/config
