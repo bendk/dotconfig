@@ -52,7 +52,8 @@ class Package:
             subprocess.check_call(['git', 'clone', self.repo_url(), self.plugin_path()])
 
     def remove_dir(self):
-        shutil.rmtree(self.plugin_path())
+        if self.plugin_path().exists():
+            shutil.rmtree(self.plugin_path())
 
     def to_config_line(self):
         return self.source
@@ -140,8 +141,8 @@ def parse_args():
 def handle_add(config_file, args):
     for source in args.source:
         package = Package.from_args(source, args)
-        config_file.add(package)
         package.update_dir()
+        config_file.add(package)
 
 def handle_delete(config_file, args):
     for source in args.source:
