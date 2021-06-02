@@ -13,5 +13,3 @@ if pcall(require, 'lspconfig') and pcall(require, 'completion') then
     require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
     require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
 end
-
-map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', { silent=true})

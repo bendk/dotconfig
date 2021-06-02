@@ -4,6 +4,6 @@ nvim-treesitter/nvim-treesitter
 nvim-treesitter/nvim-treesitter-textobjects
 itchyny/lightline.vim
 tpope/vim-repeat
-dstein64/nvim-scrollview
 easymotion/vim-easymotion
 joshdick/onedark.vim
+folke/which-key.nvim
