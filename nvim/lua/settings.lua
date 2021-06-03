@@ -1,10 +1,9 @@
 -- vim settings
---
-opt('o', 'hidden', true)
+
+vim.opt.hidden = true
 
 -- Command tab completion 
-opt('o', 'wildmenu', true)
-opt('o', 'wildmode', 'longest:full')
-opt('o', 'wildmode', 'longest:full')
-opt('b', 'shiftwidth', 4)
-opt('b', 'iskeyword', "@,48-57,_,192-255,-")
+vim.opt.wildmenu = true
+vim.opt.wildmode = 'longest:full'
+vim.opt.shiftwidth = 4
+vim.opt.iskeyword:append("-")

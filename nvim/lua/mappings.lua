@@ -77,6 +77,8 @@ local operators = {
 }
 
 local commands = {
+    u = 'Undo',
+    U = { '<C-r>', 'Redo' },
     ['<<'] = { '<<', 'Indent left', },
     ['>>'] = { '>>', 'Indent right' },
     [':'] = 'Command Line',
@@ -127,11 +129,15 @@ local text_objects = {
     ['i}'] = [[same as iB]],
 }
 
+local visual_selectors = {
+}
+
   -- Motions
 wk.register(motions, { mode = "n", prefix = "" })
 wk.register(motions, { mode = "o", prefix = "" })
 wk.register(commands, { mode = "n", prefix = "" })
 wk.register(text_objects, { mode = "o", prefix = "" })
+wk.register(visual_selectors, { mode = "x", prefix = "" })
 
 wk.setup {
     plugins = {
