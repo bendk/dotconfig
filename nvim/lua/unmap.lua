@@ -131,7 +131,6 @@ local normal_mode = {
     "{",
     "|",
     "}",
-    "~",
     "<C-End>",
     "<C-Home>",
     "<C-Left>",

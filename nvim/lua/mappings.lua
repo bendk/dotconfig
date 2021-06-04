@@ -12,8 +12,8 @@ local function call(call)
     return command('call ' .. call)
 end
 
-local function luacommand(call)
-    return command('lua require("commands"). ' .. call)
+local function call_lua(module, call)
+    return command('lua require("' .. module .. '"). ' .. call)
 end
 
 local function plug(keys)
@@ -22,14 +22,12 @@ end
 
 
 local motions = {
-    h = 'Left',
-    t = 'Down',
-    n = 'Up',
-    s = 'Right',
+    h = { 'h', 'Left' },
+    t = { 'k', 'Down' },
+    n = { 'j', 'Up' },
+    s = { 'l', 'Right' },
 
     j = { plug('(easymotion-bd-f)'), 'Jump'},
-    k = { 'n', 'Next match'},
-    l = 'Right',
 
     w = 'Next word',
     b = 'Previous word',
@@ -43,6 +41,13 @@ local motions = {
     F = 'Move to previous char',
     t = 'Move before next char',
     T = 'Move before previous char',
+    [';'] = 'Repeat last Move',
+
+    ['/'] = 'Search forward',
+    ['?'] = 'Search backward',
+    ['<space>'] = { 'n', 'Next search match' },
+    ['<bs>'] = { 'N', 'Previous search match' },
+    ['<esc>'] = { ':nohls<cr>', 'Clear search'},
 
     g = {
 	name = 'goto',
@@ -135,6 +140,7 @@ local visual_selectors = {
   -- Motions
 wk.register(motions, { mode = "n", prefix = "" })
 wk.register(motions, { mode = "o", prefix = "" })
+wk.register(motions, { mode = "x", prefix = "" })
 wk.register(commands, { mode = "n", prefix = "" })
 wk.register(text_objects, { mode = "o", prefix = "" })
 wk.register(visual_selectors, { mode = "x", prefix = "" })
