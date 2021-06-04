@@ -13,7 +13,7 @@ local function call(call)
 end
 
 local function call_lua(module, call)
-    return command('lua require("' .. module .. '"). ' .. call)
+    return command('lua require("' .. module .. '").' .. call)
 end
 
 local function plug(keys)
@@ -37,11 +37,11 @@ local motions = {
 
     ['^'] = 'Start of line',
     ['$'] = 'End of line',
-    f = 'Move to next char',
-    F = 'Move to previous char',
-    t = 'Move before next char',
-    T = 'Move before previous char',
-    [';'] = 'Repeat last Move',
+    f = { call_lua('search', 'find_forward()'), 'Move to next char' },
+    F = { call_lua('search', 'find_backward()'), 'Move to previous char' },
+    t = { call_lua('search', 'to_forward()'), 'Move before next char' },
+    T = { call_lua('search', 'to_backward()'), 'Move before previous char' },
+    [';'] = { call_lua('search', 'repeat_find()'), 'Repeat last Move' },
 
     ['/'] = 'Search forward',
     ['?'] = 'Search backward',
