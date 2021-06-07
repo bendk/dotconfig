@@ -5,6 +5,7 @@ require('utils');
 require('commands');
 require('settings');
 require('theme');
+require('find');
 require('changelist');
 require('easymotion');
 require('lsp');

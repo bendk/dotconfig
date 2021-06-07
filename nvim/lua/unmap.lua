@@ -1,4 +1,4 @@
--- Unmap builtin keybindings that I don't use.  This is a lot of them.  Keys are unbound because:
+-- Unmap builtin keybindings that I don't use, which is a lot of them.  Keys are unbound because:
 --
 --   - I haven't found them useful
 --   - I use a different workflow to achieve the same functionality
@@ -124,7 +124,6 @@ local normal_mode = {
     "W",
     "X",
     "Y",
-    "Z",
     "`",
     "do",
     "dp",

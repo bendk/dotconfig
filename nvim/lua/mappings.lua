@@ -1,33 +1,12 @@
+local map = require('map')
 local wk = require('which-key')
 
+-- TODO
 -- map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', { silent=true})
 -- map('n', 's', '<Plug>(easymotion-bd-f)', {noremap=false})
 
--- Shortcuts to create bindings
-local function command(line)
-    return '<cmd>' .. line .. '<cr>'
-end
-
-local function call(call)
-    return command('call ' .. call)
-end
-
-local function call_lua(module, call)
-    return command('lua require("' .. module .. '").' .. call)
-end
-
-local function plug(keys)
-    return '<Plug>' .. keys
-end
-
-
 local motions = {
-    h = { 'h', 'Left' },
-    t = { 'k', 'Down' },
-    n = { 'j', 'Up' },
-    s = { 'l', 'Right' },
-
-    j = { plug('(easymotion-bd-f)'), 'Jump'},
+    j = { map.plug('(easymotion-bd-f)'), 'Jump'},
 
     w = 'Next word',
     b = 'Previous word',
@@ -37,34 +16,35 @@ local motions = {
 
     ['^'] = 'Start of line',
     ['$'] = 'End of line',
-    f = { call_lua('search', 'find_forward()'), 'Move to next char' },
-    F = { call_lua('search', 'find_backward()'), 'Move to previous char' },
-    t = { call_lua('search', 'to_forward()'), 'Move before next char' },
-    T = { call_lua('search', 'to_backward()'), 'Move before previous char' },
-    [';'] = { call_lua('search', 'repeat_find()'), 'Repeat last Move' },
 
+    -- Find single chars
+    f = 'Move forward to char',
+    F = 'Move backward to char',
+    t = 'Move forward to before char',
+    T = 'Move backword to before char',
+    [';'] = { map.call_lua('find', 'repeat_find()'), 'Repeat last Move' },
+    -- Search for strings
     ['/'] = 'Search forward',
     ['?'] = 'Search backward',
-    ['<space>'] = { 'n', 'Next search match' },
-    ['<bs>'] = { 'N', 'Previous search match' },
+    n = 'Next search match',
+    N = 'Previous search match',
     ['<esc>'] = { ':nohls<cr>', 'Clear search'},
-
     g = {
 	name = 'goto',
 	h = { 'gg', 'First line' }, 
 	e = { 'G', 'Last line' }, 
-	l = { call('feedkeys(":")'), 'Line' }, 
+	l = { map.call('feedkeys(":")'), 'Line' }, 
 	t = { '*', 'Token' }, 
-	p = { command('cp'), 'Quickfix prev' },
-	n = { command('cn'), 'Quickfix next' },
-	fp = { command('cpf'), 'Quickfix file-prev' },
-	fn = { command('cnf'), 'Quickfix file-next' },
-	cc = { command('cc'), 'Quickfix current' },
-	co = { command('copen'), 'Quickfix show' },
+	p = { map.command('cp'), 'Quickfix prev' },
+	n = { map.command('cn'), 'Quickfix next' },
+	fp = { map.command('cpf'), 'Quickfix file-prev' },
+	fn = { map.command('cnf'), 'Quickfix file-next' },
+	cc = { map.command('cc'), 'Quickfix current' },
+	co = { map.command('copen'), 'Quickfix show' },
 	jp = { '<c-o>', 'Jumplist prev' },
 	jn = { '<c-i>', 'Jumplist next' },
     },
-    ZZ = { 'ZZ', 'Save and Quit' },
+    ZZ = { 'Save and Quit' },
 }
 
 local operators = {
@@ -91,7 +71,7 @@ local commands = {
 	name = 'Menu',
 	-- buffer
 	-- window
-	[','] = { command('WhichKey'), 'Which key menu' },
+	[','] = { map.command('WhichKey'), 'Which key menu' },
     },
 }
 
@@ -158,4 +138,4 @@ wk.setup {
     },
     operators = operators,
     ignore_missing = true,
-} 
+}
