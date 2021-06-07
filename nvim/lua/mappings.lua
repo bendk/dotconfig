@@ -58,6 +58,24 @@ local operators = {
 	-- n names
 	-- f format
 	-- w swap
+	p = {
+	    name = 'Paste...',
+	    c = { '"+p', 'Clipboard'},
+	    s = { '"*p', 'Selection'},
+	    i = { '".p', 'Last insert'},
+	    r = { 
+		name='Register',
+	    },
+	},
+	P = {
+	    name = 'Paste before...',
+	    c = { '"+P', 'Clipboard'},
+	    s = { '"*P', 'Selection'},
+	    i = { '".P', 'Last insert'},
+	    r = { 
+		name='Register',
+	    },
+	},
     },
 }
 
@@ -122,14 +140,16 @@ wk.register(motions, { mode = "n", prefix = "" })
 wk.register(motions, { mode = "o", prefix = "" })
 wk.register(motions, { mode = "x", prefix = "" })
 wk.register(commands, { mode = "n", prefix = "" })
+wk.register(operators, { mode = "n", prefix = "" })
 wk.register(text_objects, { mode = "o", prefix = "" })
 wk.register(visual_selectors, { mode = "x", prefix = "" })
 
 wk.setup {
     plugins = {
 	marks = true,
-	registers = true,
+	registers = false,
 	presets = false,
+	copypaste = true,
     },
     key_labels = {
 	["<SPACE>"] = "SPACE",
