@@ -1,161 +1,54 @@
 local map = require('map')
-local wk = require('which-key')
+
+map.map('', 'j', map.plug('(easymotion-bd-f)'))
+map.map('', 'h', map.call_lua('help', 'show_window()'))
+map.map('n', '<esc>', ':nohls<cr>')
+-- g -> "Goto"
+map.map('', 'gh', 'gg') -- "go home"
+map.map('', 'ge', 'G') -- "go end"
+map.map('n', 'gl', map.call('feedkeys(":")')) -- "goto line"
+map.map('n', 'gt', '*') -- "Goto token"
+map.map('n', 'gp', map.command('cp')) -- "Quickfix prev"
+map.map('n', 'gn', map.command('cn')) -- "Quickfix next"
+map.map('n', 'gfp', map.command('cpf')) -- "Quickfix file-prev"
+map.map('n', 'gfn', map.command('cnf')) -- "Quickfix file-next"
+map.map('n', 'gcc', map.command('cc')) -- "Quickfix current"
+map.map('n', 'gco', map.command('copen')) -- "Quickfix show"
+map.map('n', 'jp', '<c-o>') -- Jumplist prev
+map.map('n', 'jn', '<c-i>') -- Jumplist prev
+-- x -> "eXtra actions"
+
+for i, char in pairs(map.LETTER_KEYCODES) do
+    local register
+    if char == 'c' then
+	-- "c" -> clipboard
+	register = '+'
+    elseif char == 's' then
+	-- "s" -> selection
+	register = 's'
+    else
+	register = char
+    end
+    map.map('nx', 'xp' .. char, '"' .. register .. 'p')
+    map.map('nx', 'xP' .. char, '"' .. register .. 'P')
+    map.map('nx', 'xy' .. char, '"' .. register .. 'y')
+end
+
+-- TODO: registers
+
+-- c comment
+-- n names
+-- f format
+-- w swap
+
+-- Unmap keys that I don't want to use
+map.map('', 'gg', '<nop>')
+map.map('', 'G', '<nop>')
+map.map('', 'Q', '<nop>')
+
 
 -- TODO
 -- map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', { silent=true})
 -- map('n', 's', '<Plug>(easymotion-bd-f)', {noremap=false})
-
-local motions = {
-    j = { map.plug('(easymotion-bd-f)'), 'Jump'},
-
-    w = 'Next word',
-    b = 'Previous word',
-    e = 'Next end of word',
-    -- Mini word
-    -- Dotted name
-
-    ['^'] = 'Start of line',
-    ['$'] = 'End of line',
-
-    -- Find single chars
-    f = 'Move forward to char',
-    F = 'Move backward to char',
-    t = 'Move forward to before char',
-    T = 'Move backword to before char',
-    [';'] = { map.call_lua('find', 'repeat_find()'), 'Repeat last Move' },
-    -- Search for strings
-    ['/'] = 'Search forward',
-    ['?'] = 'Search backward',
-    n = 'Next search match',
-    N = 'Previous search match',
-    ['<esc>'] = { ':nohls<cr>', 'Clear search'},
-    g = {
-	name = 'goto',
-	h = { 'gg', 'First line' }, 
-	e = { 'G', 'Last line' }, 
-	l = { map.call('feedkeys(":")'), 'Line' }, 
-	t = { '*', 'Token' }, 
-	p = { map.command('cp'), 'Quickfix prev' },
-	n = { map.command('cn'), 'Quickfix next' },
-	fp = { map.command('cpf'), 'Quickfix file-prev' },
-	fn = { map.command('cnf'), 'Quickfix file-next' },
-	cc = { map.command('cc'), 'Quickfix current' },
-	co = { map.command('copen'), 'Quickfix show' },
-	jp = { '<c-o>', 'Jumplist prev' },
-	jn = { '<c-i>', 'Jumplist next' },
-    },
-    ZZ = { 'Save and Quit' },
-}
-
-local operators = {
-    d = 'Delete',
-    c = 'Change',
-    y = 'Yank',
-    v = 'Visual Character Mode',
-    x = {
-	name = 'eXtra Actions',
-	-- c comment
-	-- n names
-	-- f format
-	-- w swap
-	p = {
-	    name = 'Paste...',
-	    c = { '"+p', 'Clipboard'},
-	    s = { '"*p', 'Selection'},
-	    i = { '".p', 'Last insert'},
-	    r = { 
-		name='Register',
-	    },
-	},
-	P = {
-	    name = 'Paste before...',
-	    c = { '"+P', 'Clipboard'},
-	    s = { '"*P', 'Selection'},
-	    i = { '".P', 'Last insert'},
-	    r = { 
-		name='Register',
-	    },
-	},
-    },
-}
-
-local commands = {
-    u = 'Undo',
-    U = { '<C-r>', 'Redo' },
-    ['<<'] = { '<<', 'Indent left', },
-    ['>>'] = { '>>', 'Indent right' },
-    [':'] = 'Command Line',
-    [','] = {
-	name = 'Menu',
-	-- buffer
-	-- window
-	[','] = { map.command('WhichKey'), 'Which key menu' },
-    },
-}
-
-local text_objects = {
-    a = { name = 'around' },
-    i = { name = 'inside' },
-    ['a"'] = [[double quoted string]],
-    ['a"'] = [[single quoted string]],
-    ['a('] = [[same as ab]],
-    ['a)'] = [[same as ab]],
-    ['a<lt>'] = [[a <> from '<' to the matching '>']],
-    ['a>'] = [[same as a<]],
-    ['aB'] = [[a Block from [{ to ]} (with brackets)]],
-    ['aW'] = [[a WORD (with white space)]],
-    ['a['] = [[a [] from '[' to the matching ']']],
-    ['a]'] = [[same as a[]],
-    ['a`'] = [[string in backticks]],
-    ['ab'] = [[a block from [( to ]) (with braces)]],
-    ['ap'] = [[a paragraph (with white space)]],
-    ['as'] = [[a sentence (with white space)]],
-    ['at'] = [[a tag block (with white space)]],
-    ['aw'] = [[a word (with white space)]],
-    ['a{'] = [[same as aB]],
-    ['a}'] = [[same as aB]],
-    ['i"'] = [[double quoted string without the quotes]],
-    ['i)'] = [[same as ib]],
-    ['i<lt>'] = [[inner <> from '<' to the matching '>']],
-    ['i>'] = [[same as i<]],
-    ['iB'] = [[inner Block from [{ and ]}]],
-    ['iW'] = [[inner WORD]],
-    ['i['] = [[inner [] from '[' to the matching ']']],
-    ['i]'] = [[same as i[]],
-    ['i`'] = [[string in backticks without the backticks]],
-    ['ib'] = [[inner block from [( to ])]],
-    ['ip'] = [[inner paragraph]],
-    ['is'] = [[inner sentence]],
-    ['it'] = [[inner tag block]],
-    ['iw'] = [[inner word]],
-    ['i{'] = [[same as iB]],
-    ['i}'] = [[same as iB]],
-}
-
-local visual_selectors = {
-}
-
-  -- Motions
-wk.register(motions, { mode = "n", prefix = "" })
-wk.register(motions, { mode = "o", prefix = "" })
-wk.register(motions, { mode = "x", prefix = "" })
-wk.register(commands, { mode = "n", prefix = "" })
-wk.register(operators, { mode = "n", prefix = "" })
-wk.register(text_objects, { mode = "o", prefix = "" })
-wk.register(visual_selectors, { mode = "x", prefix = "" })
-
-wk.setup {
-    plugins = {
-	marks = true,
-	registers = false,
-	presets = false,
-	copypaste = true,
-    },
-    key_labels = {
-	["<SPACE>"] = "SPACE",
-	["<CR>"] = "ENTER",
-	["<TAB>"] = "TAB",
-    },
-    operators = operators,
-    ignore_missing = true,
-}
+-- Mini word
+-- Dotted name

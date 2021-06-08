@@ -7,4 +7,3 @@ itchyny/lightline.vim
 tpope/vim-repeat
 easymotion/vim-easymotion
 joshdick/onedark.vim
-folke/which-key.nvim

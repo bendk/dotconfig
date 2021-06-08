@@ -21,10 +21,54 @@ function M.plug(keys)
     return '<Plug>' .. keys
 end
 
-function M.map(mode, lhs, rhs, opts)
-  local options = {noremap = true, silent = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+local function get_options(opts, rhs)
+    local rhs_has_plug = (string.find(string.lower(rhs), "<plug>") ~= nil)
+    local options = {
+	noremap = not rhs_has_plug,
+	silent = true,
+    }
+    if opts then options = vim.tbl_extend('force', options, opts) end
+    return options
 end
 
-return M;
+function M.map(mode, lhs, rhs, opts)
+    local options = get_options(opts, rhs)
+    if mode == 'nx' then
+	vim.api.nvim_set_keymap('n', lhs, rhs, options)
+	vim.api.nvim_set_keymap('x', lhs, rhs, options)
+    else
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    end
+end
+
+function M.buf_map(buf, mode, lhs, rhs, opts)
+    local options = get_options(opts, rhs)
+    if mode == 'nx' then
+	vim.api.nvim_buf_set_keymap(buf, 'n', lhs, rhs, options)
+	vim.api.nvim_buf_set_keymap(buf, 'x', lhs, rhs, options)
+    else
+	vim.api.nvim_buf_set_keymap(buf, mode, lhs, rhs, options)
+    end
+end
+
+-- Create tables that contain lists of single characters that can be typed
+
+M.CHARACTER_KEYCODES = {}
+M.UPPERCASE_KEYCODES = {}
+M.LOWERCASE_KEYCODES = {}
+M.LETTER_KEYCODES = {}
+for num = 32,126 do -- ASCII printable minus deleted
+    local char = string.char(num)
+    local is_lower = 'a' <= char and char <= 'z'
+    local is_upper = 'A' <= char and char <= 'Z'
+    if char == "<" then 
+	char = "<lt>"
+    end
+
+    table.insert(M.CHARACTER_KEYCODES, char)
+    if is_lower then table.insert(M.LOWERCASE_KEYCODES, char) end
+    if is_upper then table.insert(M.UPPERCASE_KEYCODES, char) end
+    if is_lower or is_upper then table.insert(M.LETTER_KEYCODES, char) end
+end
+
+return M

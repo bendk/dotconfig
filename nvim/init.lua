@@ -1,6 +1,5 @@
 vim.g.mapleader = ","
 
-require('unmap');
 require('utils');
 require('commands');
 require('settings');

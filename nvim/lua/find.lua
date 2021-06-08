@@ -46,8 +46,7 @@ function M.to_backward(key)
     do_find('\\V' .. escape_key(key) .. '\\@<=\\.', 'b')
 end
 
--- Map all combinations of f<key>, t<key>, etc.
-
+-- Remap all combinations of f<key>, t<key>, etc.
 local function map_one_key(char, arg_value)
     map.map('', 'f' .. char, map.call_lua('find', 'find_forward("' .. arg_value .. '")'))
     map.map('', 't' .. char, map.call_lua('find', 'to_forward("' .. arg_value .. '")'))
@@ -59,18 +58,15 @@ local function map_one_key(char, arg_value)
 end
 
 -- ascii printable chars (minus delete)
-for num = 32,126 do
-    -- Make sure to escape "<"
-    local key = vim.fn.nr2char(num)
-    local char = key
-    if key == "<" then 
-	char = "\\<"
-    end
-    map_one_key(key, char)
+for i, char in pairs(map.CHARACTER_KEYCODES) do
+    map_one_key(char, t(char))
 end
 
 -- Special chars
 map_one_key('<cr>', '[cr]')
 map_one_key('<tab>', '[tab]')
+
+-- Remap ';'
+map.map('', ';', map.call_lua('find', 'repeat_find()'))
 
 return M

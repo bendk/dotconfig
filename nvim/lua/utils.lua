@@ -9,6 +9,12 @@ function opt(scope, key, value)
     if scope ~= 'o' then scopes['o'][key] = value end
 end
 
+-- Termcode escape
+function t(str)
+    -- Adjust boolean arguments as needed
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 function printout(obj)
     print(vim.inspect(obj))
 end
