@@ -5,7 +5,7 @@ require('commands');
 require('settings');
 require('theme');
 require('find');
-require('changelist');
+require('floating_help');
 require('easymotion');
 require('lsp');
 require('treesitter');
