@@ -7,31 +7,31 @@ local HELP_TEXT = {
     --
     {
 	-- Header:
-	{"g:  Goto"},
+	{"Goto"},
 	-- Lines:
-	"h:  First line",
-	"e:  Last line",
-	"l:  Line",
-	"t:  Search for token",
-	"p:  Quickfix prev",
-	"n:  Quickfix next",
-	"fp: Quickfix file-prev",
-	"fn: Quickfix file-next",
-	"cc: Quickfix current",
-	"co: Quickfix show",
-	"jp: Jumplist prev",
-	"jn: Jumplist next",
+	{"gh", "First line"},
+	{"ge", "Last line"},
+	{"gl", "Line"},
+	{"gt", "Search for token"},
+	{"gp", "Quickfix prev"},
+	{"gn", "Quickfix next"},
+	{"gfp", "Quickfix file-prev"},
+	{"gfn", "Quickfix file-next"},
+	{"gcc", "Quickfix current"},
+	{"gco", "Quickfix show"},
+	{"gjp", "Jumplist prev"},
+	{"gjn", "Jumplist next"},
     },
     {
-	{"Paste/Yank..."},
-	"xp: Paste...",
-	"xP: Paste before...",
-	"xy: Yank...",
-	"",
-	{"Destination"},
-	"c:       Clipboard",
-	"s:       Selection",
-	"[other]: Register",
+	{"Paste/Yank/Delete..."},
+	{"xp", "Paste"},
+	{"xP", "Paste before"},
+	{"xy", "Yank"},
+	{"xd", "Delete"},
+	{"...Destination"},
+	{"c", "Clipboard"},
+	{"s", "Selection"},
+	{"[other]", "Register"},
     },
 };
 
@@ -39,37 +39,62 @@ local HELP_TEXT_COLUMN_WIDTH = 30
 
 local M = {}
 
-local function set_buf_row(buf, row, columns)
+local function calc_column_info(columns)
     local sizes = {}
-    for i, col in pairs(columns) do
-	table.insert(sizes, table.maxn(col))
-    end
-
-    local max_size = math.max(unpack(sizes))
-    local lines = {}
-    local headers = {}
-
-    for i = 1, max_size do
-	local line = ""
-	for _, col in pairs(columns) do
-	    local cell = col[i]
-	    if type(cell) == "table" then
-		-- Highlight
-		cell = cell[1]
-		local current_col = string.len(line)
-		table.insert(headers, {row + i - 1, current_col, current_col + string.len(cell)})
+    local info = {
+	max_key_lengths = {}
+    }
+    for _, column in pairs(columns) do
+	table.insert(sizes, table.maxn(column))
+	local max_key_len = 0
+	for _, cell in pairs(column) do
+	    if column[2] then
+		max_key_len = math.max(max_key_len, #column[1])
 	    end
+	end
+	table.insert(info.max_key_lengths, max_key_len)
+    end
+    info.max_size = math.max(unpack(sizes))
+    return info
+end
+
+local function format_cell(key, label, max_key_len)
+    local line
+    if key then
+	-- pad key
+	line = string.rep(' ', max_key_len - #key) .. key .. ': ' .. label
+    else
+	line = label
+    end
+    return line .. string.rep(' ', HELP_TEXT_COLUMN_WIDTH - #line)
+end
+
+local function set_buf_row(buf, start_row, columns)
+    local column_info = calc_column_info(columns)
+    local lines = {}
+    local header_areas = {}
+
+    for row = 1, column_info.max_size do
+	local line = ""
+	for column_index, col in pairs(columns) do
+	    local cell = col[row]
 	    if cell == nil then
-		line = line ..  string.rep(" ", HELP_TEXT_COLUMN_WIDTH)
+		-- Past the end of the column
+		line = line .. string.rep(' ', HELP_TEXT_COLUMN_WIDTH)
+	    elseif cell[2] == nil then
+		-- Header cell
+		table.insert(header_areas, {start_row + row - 1, #line, #line + #cell[1]})
+		line = line .. format_cell(nil, cell[1], column_info.max_key_lengths[column_index])
 	    else
-		line = line .. cell .. string.rep(" ", HELP_TEXT_COLUMN_WIDTH - string.len(cell))
+		-- Key: label cell
+		line = line .. format_cell(cell[1], cell[2], column_info.max_key_lengths[column_index])
 	    end
 	end
 	table.insert(lines, line)
     end
-    vim.api.nvim_buf_set_lines(buf, row, row, false, lines)
+    vim.api.nvim_buf_set_lines(buf, start_row, start_row, false, lines)
 
-    for i, area in pairs(headers) do 
+    for i, area in pairs(header_areas) do 
 	vim.api.nvim_buf_add_highlight(buf, -1, "Function", area[1], area[2], area[3])
     end
 
@@ -112,6 +137,7 @@ function M.show_window()
     set_buf_text(buf, opts.width)
 
 
+    map.buf_map(buf, '', 'h', ':q<cr>', {nowait=true})
     map.buf_map(buf, '', 'q', ':q<cr>', {nowait=true})
     map.buf_map(buf, '', '<esc>', ':q<cr>', {nowait=true})
     map.buf_map(buf, '', '<enter>', ':q<cr>', {nowait=true})
