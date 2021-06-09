@@ -51,9 +51,10 @@ function M.buf_map(buf, mode, lhs, rhs, opts)
     end
 end
 
--- Create tables that contain lists of single characters that can be typed
+-- Support for mapping all characters of a particular type
 
 M.CHARACTER_KEYCODES = {}
+M.NON_LETTER_KEYCODES = {}
 M.UPPERCASE_KEYCODES = {}
 M.LOWERCASE_KEYCODES = {}
 M.LETTER_KEYCODES = {}
@@ -68,7 +69,18 @@ for num = 32,126 do -- ASCII printable minus deleted
     table.insert(M.CHARACTER_KEYCODES, char)
     if is_lower then table.insert(M.LOWERCASE_KEYCODES, char) end
     if is_upper then table.insert(M.UPPERCASE_KEYCODES, char) end
-    if is_lower or is_upper then table.insert(M.LETTER_KEYCODES, char) end
+    if is_lower or is_upper then
+	table.insert(M.LETTER_KEYCODES, char)
+    else
+	table.insert(M.NON_LETTER_KEYCODES, char)
+    end
+end
+
+function M.multi_map(mode, keycodes, lhs_template, rhs_template, opts)
+    for i, keycode in pairs(keycodes) do
+	local argument = string.gsub(keycode, '<', '<lt>')
+	M.map(mode, string.format(lhs_template, keycode), string.format(rhs_template, argument), opts)
+    end
 end
 
 return M
