@@ -16,6 +16,7 @@ end
 local last_find = nil
 
 local function do_find(pattern, mode)
+    pattern = t(pattern)
     vim.fn.search('\\V' .. pattern, mode)
     last_find = { pattern, mode }
 end
