@@ -33,6 +33,32 @@ local HELP_TEXT = {
 	{"s", "Selection"},
 	{"[other]", "Register"},
     },
+    {
+	{"Miniword"},
+	{"xw", "Next miniWord"},
+	{"xb", "Back mini_word"},
+	{"im", "inner miniword"},
+	{"am", "a miniword"},
+	{"Megaword"},
+	{"W", "Next mega.word"},
+	{"B", "Back mega:word"},
+	{"iW", "inner megaword"},
+	{"aW", "a megaword"},
+    },
+    {
+	{"Swap comma items"},
+	{"x,n", "Swap next"},
+	{"x,p", "Swap prev"},
+	{"x,i", "Swap interactive"},
+	{"Swap interactive"},
+	{"<down>", "Next item"},
+	{"<up>", "Prev item"},
+	{"<right>", "Swap with next"},
+	{"<left>", "Swap with prev"},
+	{"s", "Sort"},
+	{"r", "Reverse"},
+	{"g", "Group item"},
+    },
 };
 
 local HELP_TEXT_COLUMN_WIDTH = 30
@@ -48,8 +74,8 @@ local function calc_column_info(columns)
 	table.insert(sizes, table.maxn(column))
 	local max_key_len = 0
 	for _, cell in pairs(column) do
-	    if column[2] then
-		max_key_len = math.max(max_key_len, #column[1])
+	    if cell[2] then
+		max_key_len = math.max(max_key_len, #cell[1])
 	    end
 	end
 	table.insert(info.max_key_lengths, max_key_len)
@@ -62,7 +88,7 @@ local function format_cell(key, label, max_key_len)
     local line
     if key then
 	-- pad key
-	line = string.rep(' ', max_key_len - #key) .. key .. ': ' .. label
+	line = key .. ':' .. string.rep(' ', max_key_len - #key + 1) .. label
     else
 	line = label
     end

@@ -36,6 +36,9 @@ function M.map(mode, lhs, rhs, opts)
     if mode == 'nx' then
 	vim.api.nvim_set_keymap('n', lhs, rhs, options)
 	vim.api.nvim_set_keymap('x', lhs, rhs, options)
+    elseif mode == 'xo' then
+	vim.api.nvim_set_keymap('x', lhs, rhs, options)
+	vim.api.nvim_set_keymap('o', lhs, rhs, options)
     else
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
     end

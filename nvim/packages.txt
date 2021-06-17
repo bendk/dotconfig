@@ -7,3 +7,6 @@ itchyny/lightline.vim
 tpope/vim-repeat
 easymotion/vim-easymotion
 joshdick/onedark.vim
+nvim-lua/plenary.nvim
+bendk/polyword.vim
+machakann/vim-swap
