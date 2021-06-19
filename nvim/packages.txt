@@ -10,3 +10,4 @@ joshdick/onedark.vim
 nvim-lua/plenary.nvim
 bendk/polyword.vim
 machakann/vim-swap
+machakann/vim-sandwich

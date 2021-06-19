@@ -3,6 +3,13 @@ local map = require('map')
 map.map('', 'j', map.plug('(easymotion-bd-f)'))
 map.map('', 'h', map.call_lua('help', 'show_window()'))
 map.map('n', '<esc>', ':nohls<cr>')
+map.map('n', '.', '<Plug>(operator-sandwich-predot)<Plug>(RepeatDot)')
+-- Sandwich
+map.map('n', 'ds', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)')
+map.map('n', 'dss', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)')
+map.map('n', 'cs', '<Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)')
+map.map('n', 'css', '<Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)')
+map.map('nx', 's', '<Plug>(operator-sandwich-add)')
 -- g -> "Goto"
 map.map('', 'gh', 'gg') -- "go home"
 map.map('', 'ge', 'G') -- "go end"
@@ -74,6 +81,9 @@ map.map('', 'Q', '<nop>')
 
 -- Disable default plugin mappings
 vim.g.swap_no_default_key_mappings = true
+vim.g.sandwich_no_default_key_mappings = true
+vim.g.operator_sandwich_no_default_key_mappings = true
+vim.g.textobj_sandwich_no_default_key_mappings = true
 
 -- TODO
 -- map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', { silent=true})

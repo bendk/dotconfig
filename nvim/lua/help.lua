@@ -59,6 +59,18 @@ local HELP_TEXT = {
 	{"r", "Reverse"},
 	{"g", "Group item"},
     },
+    {
+	{"Surround"},
+	{"s[motion]", "Add Surround"},
+	{"ds", "Delete Surround"},
+	{"dss", "Delete Surround (auto-select)"},
+	{"cs", "Change Surround"},
+	{"css", "Change Surround (auto-select)"},
+	{"Special Surround"},
+	{"f", "function(___)"},
+	{"g", "generic<___>"},
+	{"i", "Instant (any two strings)"},
+    },
 };
 
 local HELP_TEXT_COLUMN_WIDTH = 30
@@ -124,8 +136,7 @@ local function set_buf_row(buf, start_row, columns)
 	vim.api.nvim_buf_add_highlight(buf, -1, "Function", area[1], area[2], area[3])
     end
 
-
-    return max_size
+    return column_info.max_size
 end
 
 local function set_buf_text(buf, width)
