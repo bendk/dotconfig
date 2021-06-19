@@ -42,10 +42,13 @@ map.map('n', 'x,p', '<plug>(swap-prev)')
 map.map('n', 'x,n', '<plug>(swap-next)')
 map.map('nx', 'x,i', '<plug>(swap-interactive)')
 map.map('nx', 'x,e', '<cmd>ArgWrap<cr>')
-map.map('n', 'xa', '<Plug>LionRight')
-map.map('x', 'xa', '<Plug>VLionRight')
+map.map('n', 'xl', '<Plug>LionRight')
+map.map('x', 'xl', '<Plug>VLionRight')
 map.map('nx', 'xc', '<plug>TComment_gc')
 map.map('n', 'xcc', '<plug>TComment_gcc')
+map.map('n', 'xsa', 'zg')
+map.map('n', 'xsA', 'zw')
+map.map('n', 'xss', 'z=')
 -- text objects
 map.map('xo', 'im', '<plug>(polyword-miniword-iw)')
 map.map('xo', 'am', '<plug>(polyword-miniword-aw)')
@@ -57,7 +60,6 @@ map.map('xo', 'is', '<plug>(textobj-sandwich-query-i)')
 map.map('xo', 'as', '<plug>(textobj-sandwich-query-a)')
 map.map('xo', 'iss', '<plug>(textobj-sandwich-auto-i)')
 map.map('xo', 'ass', '<plug>(textobj-sandwich-auto-a)')
-
 -- To/find
 map.multi_map('', map.CHARACTER_KEYCODES, 'f%s', map.call_lua('find', 'find_forward([[%s]])'))
 map.multi_map('', map.CHARACTER_KEYCODES, 't%s', map.call_lua('find', 'to_forward([[%s]])'))
@@ -68,7 +70,6 @@ map.multi_map('o', map.CHARACTER_KEYCODES, 'f%s', 'v' .. map.call_lua('find', 'f
 map.multi_map('o', map.CHARACTER_KEYCODES, 't%s', 'v' .. map.call_lua('find', 'to_forward([[%s]])'))
 -- Repeat last f/t
 map.map('', ';', map.call_lua('find', 'repeat_find()'))
-
 -- paste/yank/delete to/from register
 map.multi_map('nx', map.LETTER_KEYCODES, 'xp%s', '"%sp')
 map.multi_map('nx', map.LETTER_KEYCODES, 'xP%s', '"%sP')
@@ -77,6 +78,8 @@ map.multi_map('nx', map.LETTER_KEYCODES, 'xd%s', '"%sd')
 -- paste/yank/delete to/from clipboard/selection
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%sc', '"+%s')
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%ss', '"*%s')
+-- Leader
+map.map('n', '<leader>s', '<cmd>set spell!<cr>')
 
 -- f format
 

@@ -47,7 +47,7 @@ local HELP_TEXT = {
     },
     {
 	{"Transforms"},
-	{"xa[char]", "Align items"},
+	{"xl[char]", "aLign items"},
 	{"xc", "Toggle comments"},
 	{"xn[char]", "Change naming style"},
 	{"Comma list"},
@@ -67,6 +67,13 @@ local HELP_TEXT = {
 	{"f", "function(___)"},
 	{"g", "generic<___>"},
 	{"i", "Instant (any two strings)"},
+    },
+    {
+	{"Spelling"},
+	{",s", "Toggle spelling"},
+	{"xss", "Suggest spelling"},
+	{"xsa", "Add spelling"},
+	{"xsA", "Remove spelling"},
     },
     {
 	{"Swap interactive mode"},
