@@ -9,5 +9,11 @@ easymotion/vim-easymotion
 joshdick/onedark.vim
 nvim-lua/plenary.nvim
 bendk/polyword.vim
-machakann/vim-swap
 machakann/vim-sandwich
+# Comma list swapping
+machakann/vim-swap
+# Argument expand/contract
+FooSoft/vim-argwrap
+# Alignment
+tommcdo/vim-lion
+tomtom/tcomment_vim

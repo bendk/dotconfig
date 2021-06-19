@@ -41,6 +41,11 @@ map.map('', 'xnK', '<plug>(polyword-transform-kebab-upper)')
 map.map('n', 'x,p', '<plug>(swap-prev)')
 map.map('n', 'x,n', '<plug>(swap-next)')
 map.map('nx', 'x,i', '<plug>(swap-interactive)')
+map.map('nx', 'x,e', '<cmd>ArgWrap<cr>')
+map.map('n', 'xa', '<Plug>LionRight')
+map.map('x', 'xa', '<Plug>VLionRight')
+map.map('nx', 'xc', '<plug>TComment_gc')
+map.map('n', 'xcc', '<plug>TComment_gcc')
 -- text objects
 map.map('xo', 'im', '<plug>(polyword-miniword-iw)')
 map.map('xo', 'am', '<plug>(polyword-miniword-aw)')
@@ -48,6 +53,10 @@ map.map('xo', 'iW', '<plug>(polyword-megaword-iw)')
 map.map('xo', 'aW', '<plug>(polyword-megaword-aw)')
 map.map('xo', 'i,', '<plug>(swap-textobject-i)')
 map.map('xo', 'a,', '<plug>(swap-textobject-a)')
+map.map('xo', 'is', '<plug>(textobj-sandwich-query-i)')
+map.map('xo', 'as', '<plug>(textobj-sandwich-query-a)')
+map.map('xo', 'iss', '<plug>(textobj-sandwich-auto-i)')
+map.map('xo', 'ass', '<plug>(textobj-sandwich-auto-a)')
 
 -- To/find
 map.multi_map('', map.CHARACTER_KEYCODES, 'f%s', map.call_lua('find', 'find_forward([[%s]])'))
@@ -69,10 +78,7 @@ map.multi_map('nx', map.LETTER_KEYCODES, 'xd%s', '"%sd')
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%sc', '"+%s')
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%ss', '"*%s')
 
--- c comment
--- n names
 -- f format
--- w swap
 
 -- Unmap keys that I don't want to use
 map.map('', 'gg', '<nop>')
@@ -84,9 +90,5 @@ vim.g.swap_no_default_key_mappings = true
 vim.g.sandwich_no_default_key_mappings = true
 vim.g.operator_sandwich_no_default_key_mappings = true
 vim.g.textobj_sandwich_no_default_key_mappings = true
-
--- TODO
--- map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', { silent=true})
--- map('n', 's', '<Plug>(easymotion-bd-f)', {noremap=false})
--- Mini word
--- Dotted name
+vim.g.lion_create_maps = false
+vim.g.tcomment_maps = false

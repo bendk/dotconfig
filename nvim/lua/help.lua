@@ -46,18 +46,15 @@ local HELP_TEXT = {
 	{"aW", "a megaword"},
     },
     {
-	{"Swap comma items"},
+	{"Transforms"},
+	{"xa[char]", "Align items"},
+	{"xc", "Toggle comments"},
+	{"xn[char]", "Change naming style"},
+	{"Comma list"},
 	{"x,n", "Swap next"},
 	{"x,p", "Swap prev"},
 	{"x,i", "Swap interactive"},
-	{"Swap interactive"},
-	{"<down>", "Next item"},
-	{"<up>", "Prev item"},
-	{"<right>", "Swap with next"},
-	{"<left>", "Swap with prev"},
-	{"s", "Sort"},
-	{"r", "Reverse"},
-	{"g", "Group item"},
+	{"x,e", "Toggle expanded"},
     },
     {
 	{"Surround"},
@@ -71,6 +68,16 @@ local HELP_TEXT = {
 	{"g", "generic<___>"},
 	{"i", "Instant (any two strings)"},
     },
+    {
+	{"Swap interactive mode"},
+	{"<down>", "Next item"},
+	{"<up>", "Prev item"},
+	{"<right>", "Swap with next"},
+	{"<left>", "Swap with prev"},
+	{"s", "Sort"},
+	{"r", "Reverse"},
+	{"g", "Group item"},
+    }
 };
 
 local HELP_TEXT_COLUMN_WIDTH = 30
