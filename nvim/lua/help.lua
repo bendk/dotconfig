@@ -69,6 +69,12 @@ local HELP_TEXT = {
 	{"i", "Instant (any two strings)"},
     },
     {
+	{"Text objects"},
+	{"if/af", "Function"},
+	{"ic/ac", "Class"},
+	{"is/as", "Surround"},
+    },
+    {
 	{"Spelling"},
 	{",s", "Toggle spelling"},
 	{"xss", "Suggest spelling"},

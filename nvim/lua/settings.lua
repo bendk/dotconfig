@@ -6,4 +6,5 @@ vim.opt.hidden = true
 vim.opt.wildmenu = true
 vim.opt.wildmode = 'longest:full'
 vim.opt.shiftwidth = 4
+vim.opt.showmode = false
 vim.opt.iskeyword:append("-")

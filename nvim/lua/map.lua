@@ -9,6 +9,10 @@ function M.command(line)
     return '<cmd>' .. line .. '<cr>'
 end
 
+function M.command_lua(line)
+    return '<cmd>lua ' .. line .. '<cr>'
+end
+
 function M.call(call)
     return M.command('call ' .. call)
 end
