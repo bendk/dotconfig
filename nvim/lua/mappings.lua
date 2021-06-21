@@ -88,6 +88,17 @@ map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%sc', '"+%s')
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%ss', '"*%s')
 -- Leader
 map.map('n', '<leader>s', '<cmd>set spell!<cr>')
+map.map('n', '<leader>g', ':grep ')
+
+map.map('n', '<leader>bn', '<cmd>bn<cr>')
+map.map('n', '<leader>bp', '<cmd>bp<cr>')
+map.map('n', '<leader>bd', '<cmd>bd<cr>')
+
+map.map('n', '<leader>wc', '<c-w>c')
+map.map('n', '<leader>w<down>', '<c-w><down>')
+map.map('n', '<leader>w<up>', '<c-w><up>')
+map.map('n', '<leader>w<left>', '<c-w><left>')
+map.map('n', '<leader>w<right>', '<c-w><right>')
 
 -- f format
 
