@@ -6,7 +6,6 @@ require('settings');
 require('theme');
 require('find');
 require('floating_help');
-require('easymotion');
 require('sandwich');
 require('lsp');
 require('treesitter');

@@ -1,19 +1,32 @@
-# My vim packages
+# Basic functionality
 neovim/nvim-lspconfig
 nvim-lua/completion-nvim
 nvim-treesitter/nvim-treesitter
 nvim-treesitter/nvim-treesitter-textobjects
-itchyny/lightline.vim
 tpope/vim-repeat
-easymotion/vim-easymotion
-joshdick/onedark.vim
 nvim-lua/plenary.nvim
+
+# Easymotion-like jumping
+phaazon/hop.nvim
+
+# color schema / statusline
+joshdick/onedark.vim
+itchyny/lightline.vim
+
+# move by miniword/megaword
 bendk/polyword.vim
+
+# surround-like text objects
 machakann/vim-sandwich
+
 # Comma list swapping
 machakann/vim-swap
+
 # Argument expand/contract
 FooSoft/vim-argwrap
+
 # Alignment
 tommcdo/vim-lion
+
+# Commenting
 tomtom/tcomment_vim

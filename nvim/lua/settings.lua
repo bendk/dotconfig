@@ -12,3 +12,5 @@ vim.opt.iskeyword:append("-")
 -- rg for grep
 vim.opt.grepprg='rg --vimgrep --no-heading'
 vim.opt.grepformat='%f:%l:%c:%m,%f:%l:%m'
+
+require'hop'.setup { keys = 'abcdefghijklmnopqrstuvwxyz', perm='TrieBacktrackFilling',}
