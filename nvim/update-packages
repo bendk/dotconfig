@@ -47,11 +47,15 @@ class Package:
     def clone(self):
         subprocess.check_call(['git', 'clone', self.repo_url(), self.plugin_path()], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    def pull(self):
+    def upgrade(self):
+        starting_commit = self.commit_id()
         subprocess.check_call(['git', 'pull'], cwd=self.plugin_path(), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        ending_commit = self.commit_id()
+        if ending_commit != starting_commit:
+            print('upgraded {} ({} -> {})'.format(self.name, starting_commit, ending_commit))
 
     def commit_id(self):
-        return subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=self.plugin_path()).decode('utf8').strip()
+        return subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD'], cwd=self.plugin_path()).decode('utf8').strip()
 
     def __eq__(self, other):
         return isinstance(other, Package) and self.name == other.name
@@ -88,12 +92,20 @@ def update_packages(packages, other_dirs, args):
             print('adding ', package.name)
             package.clone()
         elif args.upgrade:
-            print('upgrading ', package.name)
-            package.pull()
+            package.upgrade()
 
     for dir in other_dirs:
-        print('removing ', dir)
-        shutil.rmtree(dir)
+        if args.remove:
+            print('removing ', dir)
+            if dir.is_symlink():
+                dir.unlink()
+            else:
+                shutil.rmtree(dir)
+        else:
+            print('extra directory: {}'.format(dir.name))
+    if other_dirs and not args.remove:
+        print()
+        print('use --remove to remove extra directories')
 
 def print_status(packages, other_dirs):
     for package in packages:
@@ -105,6 +117,7 @@ def print_status(packages, other_dirs):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--upgrade', action='store_true')
+    parser.add_argument('--remove', action='store_true')
     parser.add_argument('--status', action='store_true')
     return parser.parse_args()
 

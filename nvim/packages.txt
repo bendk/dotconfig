@@ -6,15 +6,16 @@ nvim-treesitter/nvim-treesitter-textobjects
 tpope/vim-repeat
 nvim-lua/plenary.nvim
 
+# The best plugins ever
+bendk/polyword.vim
+bendk/project-panel.vim
+
 # Easymotion-like jumping
 phaazon/hop.nvim
 
 # color schema / statusline
 joshdick/onedark.vim
 itchyny/lightline.vim
-
-# move by miniword/megaword
-bendk/polyword.vim
 
 # surround-like text objects
 machakann/vim-sandwich
