@@ -1,7 +1,7 @@
 local map = require('map')
 
 map.map('', 'j', map.command('HopChar1'))
-map.map('', 'J', map.command('HopLine'))
+map.map('', 'j<cr>', map.command('HopLine'))
 map.map('', 'h', map.call_lua('help', 'show_window()'))
 map.map('n', '<esc>', ':nohls<cr>')
 map.map('n', '.', '<Plug>(operator-sandwich-predot)<Plug>(RepeatDot)')
