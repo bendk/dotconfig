@@ -1,6 +1,6 @@
 -- vim settings
-
 vim.opt.hidden = true
+vim.opt.expandtab = true
 
 -- Command tab completion 
 vim.opt.wildmenu = true
@@ -12,5 +12,9 @@ vim.opt.iskeyword:append("-")
 -- rg for grep
 vim.opt.grepprg='rg --vimgrep --no-heading'
 vim.opt.grepformat='%f:%l:%c:%m,%f:%l:%m'
+
+-- Trailing spaces
+vim.opt.list = true
+vim.opt.listchars = 'tab:>-,trail:-'
 
 require'hop'.setup { keys = 'abcdefghijklmnopqrstuvwxyz', perm='TrieBacktrackFilling',}

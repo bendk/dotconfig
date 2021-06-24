@@ -28,8 +28,8 @@ map.map('n', 'ggd', map.command_lua('vim.lsp.diagnostic.show_line_diagnostics()'
 map.map('n', 'gd', map.command_lua('vim.lsp.buf.definition()'))
 map.map('n', 'gi', map.command_lua('vim.lsp.buf.implementation()'))
 map.map('n', 'gr', map.command_lua('vim.lsp.buf.references()'))
-map.map('n', 'jp', '<c-o>') -- Jumplist prev
-map.map('n', 'jn', '<c-i>') -- Jumplist prev
+map.map('n', 'gb', '<c-o>') -- Go back
+map.map('n', 'gf', '<c-i>') -- Go forward
 -- x -> "eXtra actions"
 map.map('', 'xw', '<plug>(polyword-miniword-w)')
 map.map('', 'xb', '<plug>(polyword-miniword-b)')

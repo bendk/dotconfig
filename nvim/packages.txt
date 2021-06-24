@@ -8,7 +8,7 @@ nvim-lua/plenary.nvim
 
 # The best plugins ever
 bendk/polyword.vim
-bendk/project-panel.vim
+bendk/project-hop.vim
 
 # Easymotion-like jumping
 phaazon/hop.nvim
