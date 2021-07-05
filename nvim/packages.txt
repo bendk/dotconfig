@@ -8,7 +8,6 @@ nvim-lua/plenary.nvim
 
 # The best plugins ever
 bendk/polyword.vim
-bendk/project-hop.vim
 
 # Easymotion-like jumping
 phaazon/hop.nvim
@@ -31,3 +30,5 @@ tommcdo/vim-lion
 
 # Commenting
 tomtom/tcomment_vim
+
+romgrk/barbar.nvim

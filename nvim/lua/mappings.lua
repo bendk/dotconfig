@@ -1,16 +1,26 @@
 local map = require('map')
 
-map.map('', 'j', map.command('HopChar1'))
-map.map('', 'j<cr>', map.command('HopLine'))
-map.map('', 'h', map.call_lua('help', 'show_window()'))
+-- Adjust the movement keys for dvorak
+map.map('', 't', 'j')
+map.map('', 'n', 'k')
+map.map('', 's', 'l')
+map.map('', 'k', 'n')
+map.map('', 'l', 't')
+-- Generic
+map.map('', '?', map.call_lua('help', 'show_window()'))
 map.map('n', '<esc>', ':nohls<cr>')
 map.map('n', '.', '<Plug>(operator-sandwich-predot)<Plug>(RepeatDot)')
+--Hop
+map.map('', 'j', map.command('HopChar1'))
+map.map('', 'j<cr>', map.command('HopLine'))
+-- z -> buffers
+map.map('n', 'z', '<cmd>BufferPick<cr>')
 -- Sandwich
 map.map('n', 'ds', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)')
 map.map('n', 'dss', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)')
 map.map('n', 'cs', '<Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)')
 map.map('n', 'css', '<Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)')
-map.map('nx', 's', '<Plug>(operator-sandwich-add)')
+map.map('nx', 'xs', '<Plug>(operator-sandwich-add)')
 -- g -> "Goto"
 map.map('', 'gh', 'gg') -- "go home"
 map.map('', 'ge', 'G') -- "go end"
@@ -71,12 +81,12 @@ map.map('xo', 'iss', '<plug>(textobj-sandwich-auto-i)')
 map.map('xo', 'ass', '<plug>(textobj-sandwich-auto-a)')
 -- To/find
 map.multi_map('', map.CHARACTER_KEYCODES, 'f%s', map.call_lua('find', 'find_forward([[%s]])'))
-map.multi_map('', map.CHARACTER_KEYCODES, 't%s', map.call_lua('find', 'to_forward([[%s]])'))
+map.multi_map('', map.CHARACTER_KEYCODES, 'l%s', map.call_lua('find', 'to_forward([[%s]])'))
 map.multi_map('', map.CHARACTER_KEYCODES, 'F%s', map.call_lua('find', 'find_backward([[%s]])'))
-map.multi_map('', map.CHARACTER_KEYCODES, 'T%s', map.call_lua('find', 'to_backward([[%s]])'))
+map.multi_map('', map.CHARACTER_KEYCODES, 'L%s', map.call_lua('find', 'to_backward([[%s]])'))
 -- Make forward finding inclusive
 map.multi_map('o', map.CHARACTER_KEYCODES, 'f%s', 'v' .. map.call_lua('find', 'find_forward([[%s]])'))
-map.multi_map('o', map.CHARACTER_KEYCODES, 't%s', 'v' .. map.call_lua('find', 'to_forward([[%s]])'))
+map.multi_map('o', map.CHARACTER_KEYCODES, 'l%s', 'v' .. map.call_lua('find', 'to_forward([[%s]])'))
 -- Repeat last f/t
 map.map('', ';', map.call_lua('find', 'repeat_find()'))
 -- paste/yank/delete to/from register

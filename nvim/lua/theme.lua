@@ -46,6 +46,5 @@ function! LSPStatus()
     return v:lua.lsp_status()
 endfunction
 
-let g:lightline = { 'colorscheme': 'onedark', 'active': { 'right': [ [ 'lineinfo' ], [ 'percent' ], ['lsp_status'] ] }, 'component_function': { 'lsp_status': 'LSPStatus' }, }
-
+let g:lightline = { 'enable': { 'statusline': 1, 'tabline': 0}, 'colorscheme': 'onedark', 'active': { 'right': [ [ 'lineinfo' ], [ 'percent' ], ['lsp_status'] ] }, 'component_function': { 'lsp_status': 'LSPStatus' }, }
 ]])
