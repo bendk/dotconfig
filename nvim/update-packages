@@ -91,12 +91,16 @@ def calc_other_dirs(packages):
     ]
 
 def update_packages(packages, other_dirs, args):
+    did_something = False
+
     for package in packages:
         if not package.is_present():
             print('adding ', package.name)
             package.clone()
+            did_something = True
         elif args.upgrade:
             package.upgrade()
+            did_something = True
 
     for dir in other_dirs:
         if args.remove:
@@ -105,11 +109,19 @@ def update_packages(packages, other_dirs, args):
                 dir.unlink()
             else:
                 shutil.rmtree(dir)
+            did_something = True
         else:
             print('extra directory: {}'.format(dir.name))
+    if did_something:
+        update_help_tags()
+
     if other_dirs and not args.remove:
         print()
         print('use --remove to remove extra directories')
+
+def update_help_tags():
+    print('updating help tags')
+    subprocess.check_call(['nvim', '-c', 'helptags ALL', '-c', 'q!'])
 
 def print_status(packages, other_dirs):
     for package in packages:
