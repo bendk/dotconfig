@@ -1,6 +1,6 @@
 # Basic functionality
 neovim/nvim-lspconfig
-nvim-lua/completion-nvim
+hrsh7th/nvim-compe
 nvim-treesitter/nvim-treesitter
 nvim-treesitter/nvim-treesitter-textobjects
 tpope/vim-repeat
