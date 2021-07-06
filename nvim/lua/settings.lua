@@ -1,6 +1,8 @@
 -- vim settings
 vim.opt.hidden = true
 vim.opt.expandtab = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Command tab completion 
 vim.opt.wildmenu = true
