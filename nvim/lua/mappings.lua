@@ -68,6 +68,7 @@ map.map('n', 'xsA', 'zw')
 map.map('n', 'xss', 'z=')
 map.map('n', 'xa', '<cmd>lua vim.lsp.buf.code_action()<cr>')
 map.map('n', 'xr', '<cmd>lua vim.lsp.buf.rename()<cr>')
+map.map('n', 'xw', '<cmd>DeleteTrailingWhitespace<cr>')
 -- text objects
 map.map('xo', 'im', '<plug>(polyword-miniword-iw)')
 map.map('xo', 'am', '<plug>(polyword-miniword-aw)')

@@ -5,6 +5,7 @@ nvim-treesitter/nvim-treesitter
 nvim-treesitter/nvim-treesitter-textobjects
 tpope/vim-repeat
 nvim-lua/plenary.nvim
+vim-scripts/DeleteTrailingWhitespace
 
 # The best plugins ever
 bendk/polyword.vim
