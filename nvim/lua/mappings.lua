@@ -107,6 +107,7 @@ map.map('n', '<leader>bp', '<cmd>bp<cr>')
 map.map('n', '<leader>bd', '<cmd>bd<cr>')
 
 map.map('n', '<leader>wc', '<c-w>c')
+map.map('n', '<leader>wo', '<c-w>o')
 map.map('n', '<leader>w<down>', '<c-w><down>')
 map.map('n', '<leader>w<up>', '<c-w><up>')
 map.map('n', '<leader>w<left>', '<c-w><left>')

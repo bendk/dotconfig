@@ -32,4 +32,8 @@ tommcdo/vim-lion
 # Commenting
 tomtom/tcomment_vim
 
+# Tabbar
 romgrk/barbar.nvim
+
+# Bookmarks
+MattesGroeger/vim-bookmarks
