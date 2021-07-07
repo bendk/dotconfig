@@ -100,7 +100,7 @@ map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%sc', '"+%s')
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%ss', '"*%s')
 -- Leader
 map.map('n', '<leader>s', '<cmd>set spell!<cr>')
-map.map('n', '<leader>g', ':grep ')
+map.map('n', '<leader>g', '<cmd>call feedkeys(":grep ")<cr>')
 
 map.map('n', '<leader>bn', '<cmd>bn<cr>')
 map.map('n', '<leader>bp', '<cmd>bp<cr>')
