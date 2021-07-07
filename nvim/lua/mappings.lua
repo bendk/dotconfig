@@ -1,11 +1,5 @@
 local map = require('map')
 
--- Adjust the movement keys for dvorak
-map.map('', 't', 'j')
-map.map('', 'n', 'k')
-map.map('', 's', 'l')
-map.map('', 'k', 'n')
-map.map('', 'l', 't')
 -- Generic
 map.map('', '?', map.call_lua('help', 'show_window()'))
 map.map('n', '<esc>', ':nohls<cr>')
