@@ -1,6 +1,7 @@
 opt('o', 'termguicolors', true)
 vim.g.onedark_color_overrides = {
     black = { gui = "#111316", cterm = "235", cterm16 = "0" },
+    background = { gui = "#111316", cterm = "235", cterm16 = "0" },
 }
 
 -- Statusline
