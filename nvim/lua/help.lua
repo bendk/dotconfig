@@ -15,6 +15,7 @@ local HELP_TEXT = {
 	{"gt", "Search for token"},
 	{"gjp", "Jumplist prev"},
 	{"gjn", "Jumplist next"},
+	{"gm", "Matching symbol"},
     },
     {
 	{"Paste/Yank/Delete..."},

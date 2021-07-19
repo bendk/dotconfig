@@ -14,7 +14,7 @@ map.map('n', 'ds', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-rel
 map.map('n', 'dss', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)')
 map.map('n', 'cs', '<Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)')
 map.map('n', 'css', '<Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)')
-map.map('nx', 'xs', '<Plug>(operator-sandwich-add)')
+map.map('nx', 's', '<Plug>(operator-sandwich-add)')
 -- g -> "Goto"
 map.map('', 'gh', 'gg') -- "go home"
 map.map('', 'ge', 'G') -- "go end"
@@ -34,6 +34,7 @@ map.map('n', 'gi', map.command_lua('vim.lsp.buf.implementation()'))
 map.map('n', 'gr', map.command_lua('vim.lsp.buf.references()'))
 map.map('n', 'gb', '<c-o>') -- Go back
 map.map('n', 'gf', '<c-i>') -- Go forward
+map.map('n', 'gm', '%') -- Go match
 -- x -> "eXtra actions"
 map.map('', 'xw', '<plug>(polyword-miniword-w)')
 map.map('', 'xb', '<plug>(polyword-miniword-b)')
