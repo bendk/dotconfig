@@ -61,14 +61,16 @@ end
 -- Support for mapping all characters of a particular type
 
 M.CHARACTER_KEYCODES = {}
-M.NON_LETTER_KEYCODES = {}
 M.UPPERCASE_KEYCODES = {}
 M.LOWERCASE_KEYCODES = {}
-M.LETTER_KEYCODES = {}
+M.NUMBER_KEYCODES = {}
+M.ALPHA_KEYCODES = {}
+M.ALPHANUM_KEYCODES = {}
 for num = 32,126 do -- ASCII printable minus deleted
     local char = string.char(num)
     local is_lower = 'a' <= char and char <= 'z'
     local is_upper = 'A' <= char and char <= 'Z'
+    local is_number = tonumber(num, 10) ~= nil
     if char == "<" then 
 	char = "<lt>"
     end
@@ -77,9 +79,10 @@ for num = 32,126 do -- ASCII printable minus deleted
     if is_lower then table.insert(M.LOWERCASE_KEYCODES, char) end
     if is_upper then table.insert(M.UPPERCASE_KEYCODES, char) end
     if is_lower or is_upper then
-	table.insert(M.LETTER_KEYCODES, char)
-    else
-	table.insert(M.NON_LETTER_KEYCODES, char)
+	table.insert(M.ALPHA_KEYCODES, char)
+    end
+    if is_lower or is_upper or is_number then
+	table.insert(M.ALPHANUM_KEYCODES, char)
     end
 end
 

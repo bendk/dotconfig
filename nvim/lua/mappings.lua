@@ -86,10 +86,10 @@ map.multi_map('o', map.CHARACTER_KEYCODES, 'l%s', 'v' .. map.call_lua('find', 't
 -- Repeat last f/t
 map.map('', ';', map.call_lua('find', 'repeat_find()'))
 -- paste/yank/delete to/from register
-map.multi_map('nx', map.LETTER_KEYCODES, 'xp%s', '"%sp')
-map.multi_map('nx', map.LETTER_KEYCODES, 'xP%s', '"%sP')
-map.multi_map('nx', map.LETTER_KEYCODES, 'xy%s', '"%sy')
-map.multi_map('nx', map.LETTER_KEYCODES, 'xd%s', '"%sd')
+map.multi_map('nx', map.ALPHANUM_KEYCODES, 'xp%s', '"%sp')
+map.multi_map('nx', map.ALPHANUM_KEYCODES, 'xP%s', '"%sP')
+map.multi_map('nx', map.ALPHANUM_KEYCODES, 'xy%s', '"%sy')
+map.multi_map('nx', map.ALPHANUM_KEYCODES, 'xd%s', '"%sd')
 -- paste/yank/delete to/from clipboard/selection
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%sc', '"+%s')
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%ss', '"*%s')
