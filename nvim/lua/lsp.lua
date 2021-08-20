@@ -12,4 +12,5 @@ if pcall(require, 'lspconfig') then
     )
     require'lspconfig'.pyright.setup{}
     require'lspconfig'.rust_analyzer.setup{}
+    require'lspconfig'.kotlin_language_server.setup{}
 end
