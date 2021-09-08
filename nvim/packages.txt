@@ -34,3 +34,6 @@ tomtom/tcomment_vim
 
 # Tabbar
 romgrk/barbar.nvim
+
+# Language-specific
+rust-lang/rust.vim

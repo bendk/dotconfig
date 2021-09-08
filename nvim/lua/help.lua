@@ -104,6 +104,11 @@ local HELP_TEXT = {
 	{",wc", "Window close"},
 	{",w<dir>", "Window Move"},
     },
+    {
+	{"LSP"},
+	{"xa", "Code actions"},
+	{"xr", "Rename"},
+    },
 };
 
 local HELP_TEXT_COLUMN_WIDTH = 30
