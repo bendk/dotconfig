@@ -1,8 +1,6 @@
 # Basic functionality
 neovim/nvim-lspconfig
 hrsh7th/nvim-compe
-nvim-treesitter/nvim-treesitter
-nvim-treesitter/nvim-treesitter-textobjects
 tpope/vim-repeat
 nvim-lua/plenary.nvim
 vim-scripts/DeleteTrailingWhitespace
@@ -37,3 +35,4 @@ romgrk/barbar.nvim
 
 # Language-specific
 rust-lang/rust.vim
+udalov/kotlin-vim

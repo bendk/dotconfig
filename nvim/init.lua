@@ -10,7 +10,6 @@ require('floating_help');
 require('sandwich');
 require('lsp');
 require('completion');
-require('treesitter');
 require('mappings');
 
 -- Make sure repeat.vim is loaded
