@@ -1,6 +1,6 @@
 [user]
     name = Ben Dean-Kawamura
-    email = ben@mozilla.com
+    email = bdk@mozilla.com
 
 [alias]
     ci = commit
@@ -22,3 +22,5 @@
 
 [init]
     defaultBranch = main
+[cinnabar]
+	helper = /home/bdk/.git-cinnabar/git-cinnabar-helper
