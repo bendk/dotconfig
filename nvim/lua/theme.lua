@@ -6,38 +6,40 @@ vim.g.onedark_color_overrides = {
 
 -- Statusline
 local in_progress_lsp_tokens = {}
-local function progress_callback(_, _, msg, client_id)
+local function progress_callback(_, msg, client_id)
     if msg and msg.value and msg.value.kind then
-	local kind = msg.value.kind
-	if kind == 'begin' then
-	    in_progress_lsp_tokens[msg.token] = true
-	elseif kind == 'end' then
-	    in_progress_lsp_tokens[msg.token] = nil
-	end
-        vim.cmd('redrawstatus!')
+        local value = msg.value
+        if value.kind == 'end' then
+            in_progress_lsp_tokens[msg.token] = nil
+        else
+            local progress = in_progress_lsp_tokens[msg.token] or {}
+            if value.title then progress.title = value.title end
+            if value.message then progress.message = value.message end
+            if value.percentage then progress.percentage = value.percentage end
+            in_progress_lsp_tokens[msg.token] = progress
+        end
     end
+    vim.cmd('redrawstatus!')
 end
 vim.lsp.handlers['$/progress'] = progress_callback
 
-function lsp_ready()
-    for token, in_progress in pairs(in_progress_lsp_tokens) do
-	if in_progress then return false end
-    end
-    return true
-end
-
 function _G.lsp_status()
-    if lsp_ready() then
-	return "LSP"
+    local status = {}
+    for token, progress in pairs(in_progress_lsp_tokens) do
+        if progress ~= nil then
+
+            table.insert(status,
+                (progress.title or "unknown")
+                .. " ("
+                .. (progress.percentage or 0)
+                .. "%)"
+            )
+        end
+    end
+    if #status > 0 then
+        return table.concat(status, " ")
     else
-	local tick = os.time() % 3
-	if tick == 0 then
-	    return "-  "
-	elseif tick == 1 then
-	    return " - "
-	else
-	    return "  -"
-	end
+        return ""
     end
 end
 
@@ -49,3 +51,6 @@ endfunction
 
 let g:lightline = { 'enable': { 'statusline': 1, 'tabline': 0}, 'colorscheme': 'onedark', 'active': { 'right': [ [ 'lineinfo' ], [ 'line' ], ['lsp_status'] ] }, 'component': {'line': '%l/%L', }, 'component_function': { 'lsp_status': 'LSPStatus' }, }
 ]])
+
+vim.cmd('hi link Searchlight Diffadd')
+vim.cmd('hi link FloatBorder Normal')

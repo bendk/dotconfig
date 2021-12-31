@@ -1,5 +1,5 @@
 -- map
--- 
+--
 -- Some utility functions for mapping keys
 
 local M = {}
@@ -28,8 +28,8 @@ end
 local function get_options(opts, rhs)
     local rhs_has_plug = (string.find(string.lower(rhs), "<plug>") ~= nil)
     local options = {
-	noremap = not rhs_has_plug,
-	silent = true,
+        noremap = not rhs_has_plug,
+        silent = true,
     }
     if opts then options = vim.tbl_extend('force', options, opts) end
     return options
@@ -38,23 +38,23 @@ end
 function M.map(mode, lhs, rhs, opts)
     local options = get_options(opts, rhs)
     if mode == 'nx' then
-	vim.api.nvim_set_keymap('n', lhs, rhs, options)
-	vim.api.nvim_set_keymap('x', lhs, rhs, options)
+        vim.api.nvim_set_keymap('n', lhs, rhs, options)
+        vim.api.nvim_set_keymap('x', lhs, rhs, options)
     elseif mode == 'xo' then
-	vim.api.nvim_set_keymap('x', lhs, rhs, options)
-	vim.api.nvim_set_keymap('o', lhs, rhs, options)
+        vim.api.nvim_set_keymap('x', lhs, rhs, options)
+        vim.api.nvim_set_keymap('o', lhs, rhs, options)
     else
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+        vim.api.nvim_set_keymap(mode, lhs, rhs, options)
     end
 end
 
 function M.buf_map(buf, mode, lhs, rhs, opts)
     local options = get_options(opts, rhs)
     if mode == 'nx' then
-	vim.api.nvim_buf_set_keymap(buf, 'n', lhs, rhs, options)
-	vim.api.nvim_buf_set_keymap(buf, 'x', lhs, rhs, options)
+        vim.api.nvim_buf_set_keymap(buf, 'n', lhs, rhs, options)
+        vim.api.nvim_buf_set_keymap(buf, 'x', lhs, rhs, options)
     else
-	vim.api.nvim_buf_set_keymap(buf, mode, lhs, rhs, options)
+        vim.api.nvim_buf_set_keymap(buf, mode, lhs, rhs, options)
     end
 end
 
@@ -71,25 +71,25 @@ for num = 32,126 do -- ASCII printable minus deleted
     local is_lower = 'a' <= char and char <= 'z'
     local is_upper = 'A' <= char and char <= 'Z'
     local is_number = tonumber(num, 10) ~= nil
-    if char == "<" then 
-	char = "<lt>"
+    if char == "<" then
+        char = "<lt>"
     end
 
     table.insert(M.CHARACTER_KEYCODES, char)
     if is_lower then table.insert(M.LOWERCASE_KEYCODES, char) end
     if is_upper then table.insert(M.UPPERCASE_KEYCODES, char) end
     if is_lower or is_upper then
-	table.insert(M.ALPHA_KEYCODES, char)
+        table.insert(M.ALPHA_KEYCODES, char)
     end
     if is_lower or is_upper or is_number then
-	table.insert(M.ALPHANUM_KEYCODES, char)
+        table.insert(M.ALPHANUM_KEYCODES, char)
     end
 end
 
 function M.multi_map(mode, keycodes, lhs_template, rhs_template, opts)
     for i, keycode in pairs(keycodes) do
-	local argument = string.gsub(keycode, '<', '<lt>')
-	M.map(mode, string.format(lhs_template, keycode), string.format(rhs_template, argument), opts)
+        local argument = string.gsub(keycode, '<', '<lt>')
+        M.map(mode, string.format(lhs_template, keycode), string.format(rhs_template, argument), opts)
     end
 end
 
