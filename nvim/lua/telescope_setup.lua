@@ -1,10 +1,11 @@
 require('telescope').setup{
     defaults = {
+        dynamic_preview_title=true,
+        sorting_strategy='ascending',
         layout_strategy = 'vertical',
         layout_config = {
+            prompt_position = "top",
             vertical = {
-                mirror = true,
-                prompt_position = 'top',
                 preview_height = 10,
                 width = 0.98
             }
@@ -27,7 +28,10 @@ require('telescope').setup{
         ["ui-select"] = {
             require("telescope.themes").get_dropdown {
             }
+        },
+        git_diff = {
         }
     }
 }
 require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('git_diff')

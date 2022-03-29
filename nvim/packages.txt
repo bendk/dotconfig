@@ -45,17 +45,18 @@ tommcdo/vim-lion
 # Highlight the current search result differently
 PeterRincker/vim-searchlight
 
-# Navigation
+# Telescope
 nvim-telescope/telescope.nvim
 nvim-telescope/telescope-fzy-native.nvim
+nvim-telescope/telescope-symbols.nvim
+bendk/telescope-git-diff
 BurntSushi/ripgrep
+
+# Navigation
 ThePrimeagen/harpoon
 
 # Commenting
 tomtom/tcomment_vim
-
-# Tabbar
-romgrk/barbar.nvim
 
 # Language-specific
 rust-lang/rust.vim
