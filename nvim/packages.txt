@@ -49,7 +49,6 @@ PeterRincker/vim-searchlight
 nvim-telescope/telescope.nvim
 nvim-telescope/telescope-fzy-native.nvim
 nvim-telescope/telescope-symbols.nvim
-bendk/telescope-git-diff
 BurntSushi/ripgrep
 
 # Navigation
@@ -59,6 +58,6 @@ ThePrimeagen/harpoon
 tomtom/tcomment_vim
 
 # Language-specific
-rust-lang/rust.vim
+#rust-lang/rust.vim
 simrat39/rust-tools.nvim
 udalov/kotlin-vim

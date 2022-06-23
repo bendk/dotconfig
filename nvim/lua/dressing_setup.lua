@@ -5,9 +5,7 @@ require('dressing').setup({
   },
   select = {
     backend = { "telescope" },
-    telescope = {
-      theme = "cursor",
-    },
+    telescope = require('telescope.themes').get_cursor(),
   },
 })
 vim.cmd('hi link DressingInputText Normal')
