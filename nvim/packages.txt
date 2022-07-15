@@ -58,6 +58,6 @@ ThePrimeagen/harpoon
 tomtom/tcomment_vim
 
 # Language-specific
-#rust-lang/rust.vim
+rust-lang/rust.vim
 simrat39/rust-tools.nvim
 udalov/kotlin-vim

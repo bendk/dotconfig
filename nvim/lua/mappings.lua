@@ -26,9 +26,9 @@ map.map('n', 'gfp', map.command('cpf')) -- "Quickfix file-prev"
 map.map('n', 'gfn', map.command('cnf')) -- "Quickfix file-next"
 map.map('n', 'gcc', map.command('cc')) -- "Quickfix current"
 map.map('n', 'gco', map.command('copen')) -- "Quickfix show"
-map.map('n', 'ggp', map.command_lua('vim.lsp.diagnostic.goto_prev()'))
-map.map('n', 'ggn', map.command_lua('vim.lsp.diagnostic.goto_next()'))
-map.map('n', 'ggd', map.command_lua('vim.lsp.diagnostic.show_line_diagnostics()'))
+map.map('n', 'ggp', map.command_lua('vim.diagnostic.goto_prev()'))
+map.map('n', 'ggn', map.command_lua('vim.diagnostic.goto_next()'))
+map.map('n', 'ggd', map.command_lua('vim.diagnostic.open_float()'))
 map.map('n', 'gd', map.command_lua('vim.lsp.buf.definition()'))
 map.map('n', 'gi', map.command_lua('vim.lsp.buf.implementation()'))
 map.map('n', 'gr', map.command_lua('vim.lsp.buf.references()'))
