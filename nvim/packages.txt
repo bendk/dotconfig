@@ -1,8 +1,13 @@
 # Basic functionality
-neovim/nvim-lspconfig
 tpope/vim-repeat
 nvim-lua/plenary.nvim
 vim-scripts/DeleteTrailingWhitespace
+
+# LSP/Treesitter
+williamboman/mason.nvim
+williamboman/mason-lspconfig.nvim
+neovim/nvim-lspconfig
+nvim-treesitter/nvim-treesitter
 
 # Completion
 hrsh7th/nvim-cmp
@@ -61,3 +66,6 @@ tomtom/tcomment_vim
 rust-lang/rust.vim
 simrat39/rust-tools.nvim
 udalov/kotlin-vim
+
+# Terminal
+voldikss/vim-floaterm

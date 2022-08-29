@@ -1,9 +1,10 @@
 -- Syntax highlighting using treesitter
 
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = 'maintained',
+    ensure_installed = { "lua", "rust", "toml", "python", "kotlin", "c", "cpp" },
     highlight = {
-	enable = false,
+	enable = true,
+        additional_vim_regex_highlighting=false,
     },
     indent = {
 	enable = false
@@ -18,6 +19,11 @@ require'nvim-treesitter.configs'.setup {
 		["ic"] = "@class.inner",
 	    }
 	},
+        rainbow = {
+            enable = true,
+            extended_mode = true,
+            max_file_lines = nil,
+        },
 	swap = {
 	    enable = true,
 	    swap_next = {

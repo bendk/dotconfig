@@ -20,11 +20,16 @@ cmp.setup({
         end,
     },
     sources = cmp.config.sources({
+        { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'snippy' }
     }, {
         { name = 'buffer' },
-    })
+    }),
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    }
 })
 
 

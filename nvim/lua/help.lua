@@ -3,8 +3,6 @@
 local map = require('map')
 
 local HELP_TEXT = {
-    -- Format:
-    --
     {
         -- Header:
         {"Goto"},
@@ -50,6 +48,9 @@ local HELP_TEXT = {
         {"x,p", "Swap prev"},
         {"x,i", "Swap interactive"},
         {"x,e", "Toggle expanded"},
+        {"Items"},
+        {"xiu", "Move item up"},
+        {"xid", "Move item down"},
     },
     {
         {"Surround"},
@@ -108,10 +109,17 @@ local HELP_TEXT = {
         {"LSP"},
         {"xa", "Code actions"},
         {"xr", "Rename"},
+        {"xm", "Rust:Expand macro"},
+        {"xt", "Rust: Open cargo.toml"},
+    },
+    {
+        {"Terminal"},
+        {",to", "Open command"},
+        {",tt", "Repeat last"},
     },
     {
         {"Other"},
-        {"xw", "Normalize whitespace"},
+        {",w", "Whitespace"},
         {"xl<char>", "Align to char"},
     },
 };
@@ -191,6 +199,7 @@ local function set_buf_text(buf, width)
         if table.maxn(columns) >= columns_per_row then
             local row_height = set_buf_row(buf, row, columns)
             row = row + row_height + 1
+            vim.api.nvim_buf_set_lines(buf, row, row, false, {""})
             columns = {}
         end
     end

@@ -36,6 +36,7 @@ map.map('n', 'gb', '<c-o>') -- Go back
 map.map('n', 'gf', '<c-i>') -- Go forward
 map.map('n', 'gm', '%') -- Go match
 -- x -> "eXtra actions"
+map.map('', 'x', '<Nop>')
 map.map('', 'xw', '<plug>(polyword-miniword-w)')
 map.map('', 'xb', '<plug>(polyword-miniword-b)')
 map.map('', 'xe', '<plug>(polyword-miniword-e)')
@@ -65,7 +66,6 @@ map.map('n', 'xsA', 'zw')
 map.map('n', 'xss', 'z=')
 map.map('n', 'xa', '<cmd>lua vim.lsp.buf.code_action()<cr>')
 map.map('n', 'xr', '<cmd>lua vim.lsp.buf.rename()<cr>')
-map.map('n', 'xw', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
 -- text objects
 map.map('xo', 'im', '<plug>(polyword-miniword-iw)')
 map.map('xo', 'am', '<plug>(polyword-miniword-aw)')
@@ -98,12 +98,13 @@ map.map('n', '<space>n', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
 map.map('n', '<space>s', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
 -- Leader
 map.map('n', '<leader>s', '<cmd>set spell!<cr>')
-map.map('n', '<leader>T', '<cmd>edit ~/Documents/txt/todo<cr>')
+map.map('n', '<leader>to', '<cmd>lua require("terminal").open()<cr>')
+map.map('n', '<leader>tt', '<cmd>lua require("terminal").open_last()<cr>')
 map.map('n', '<leader>f', '<cmd>Telescope find_files<cr>')
 map.map('n', '<leader>g', '<cmd>Telescope live_grep<cr>')
 map.map('n', '<leader>t', '<cmd>Telescope resume<cr>')
 map.map('n', '<leader>c', '<cmd>Telescope commands<cr>')
-
+map.map('n', '<leader>w', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
 -- Leader: Buffer
 map.map('n', '<leader>bn', '<cmd>bn<cr>')
 map.map('n', '<leader>bp', '<cmd>bp<cr>')

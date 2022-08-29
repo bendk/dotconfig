@@ -2,12 +2,13 @@ local map = require('map')
 
 require('rust-tools').setup {
     tools = {
-        autoSetHints = false,
+        inlay_hints = {
+            auto = false,
+        }
     }
 }
 
-map.map('n', '<leader>lb', '<cmd>make build<cr>')
-map.map('n', '<leader>lc', '<cmd>make clippy<cr>')
-map.map('n', '<leader>ll', '<cmd>make lint<cr>')
-map.map('n', '<leader>lm', "<cmd>:lua require'rust-tools.expand_macro'.expand_macro()<cr>")
-map.map('n', '<leader>lt', "<cmd>:RustTest<cr>")
+map.map('n', 'xm', "<cmd>:lua require'rust-tools'.expand_macro.expand_macro()<cr>")
+map.map('n', 'xt', "<cmd>RustOpenCargo<cr>")
+map.map('n', 'xid', "<cmd>RustMoveItemDown<cr>")
+map.map('n', 'xiu', "<cmd>RustMoveItemUp<cr>")
