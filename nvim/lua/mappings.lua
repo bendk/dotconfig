@@ -89,13 +89,6 @@ map.multi_map('o', map.CHARACTER_KEYCODES, 'l%s', 'v' .. map.call_lua('find', 't
 map.map('', ';', map.call_lua('find', 'repeat_find()'))
 -- paste/yank/delete to/from clipboard/selection
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%s', '"+%s')
--- Harpoon
-map.map('n', '<space>a', '<cmd>lua require("harpoon.mark").add_file()<cr>')
-map.map('n', '<space>m', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
-map.map('n', '<space>h', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
-map.map('n', '<space>t', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
-map.map('n', '<space>n', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
-map.map('n', '<space>s', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
 -- Leader
 map.map('n', '<leader>d', '<cmd>edit ~/txt/todo<cr>')
 map.map('n', '<leader>s', '<cmd>set spell!<cr>')
@@ -106,12 +99,14 @@ map.map('n', '<leader>g', '<cmd>Telescope live_grep<cr>')
 map.map('n', '<leader>r', '<cmd>Telescope resume<cr>')
 map.map('n', '<leader>c', '<cmd>Telescope commands<cr>')
 map.map('n', '<leader>w', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
+
 -- Leader: Buffer
+map.map('n', '<leader>bb', '<cmd>BufferLinePick<cr>')
 map.map('n', '<leader>bn', '<cmd>bn<cr>')
 map.map('n', '<leader>bp', '<cmd>bp<cr>')
+map.map('n', '<leader>bi', '<cmd>BufferLineTogglePin<cr>')
 map.map('n', '<leader>bd', '<cmd>bd<cr>')
 map.map('n', '<leader>bw', '<cmd>w<cr>')
-map.map('n', '<leader>bc', '<cmd>w<cr><cmd>bd<cr>')
 
 -- Leader: Window
 map.map('n', '<leader>wc', '<c-w>c')

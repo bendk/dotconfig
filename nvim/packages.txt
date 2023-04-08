@@ -56,9 +56,6 @@ nvim-telescope/telescope-fzy-native.nvim
 nvim-telescope/telescope-symbols.nvim
 BurntSushi/ripgrep
 
-# Navigation
-ThePrimeagen/harpoon
-
 # Commenting
 tomtom/tcomment_vim
 
@@ -69,3 +66,7 @@ udalov/kotlin-vim
 
 # Terminal
 voldikss/vim-floaterm
+
+# Tabs
+nvim-tree/nvim-web-devicons
+akinsho/bufferline.nvim

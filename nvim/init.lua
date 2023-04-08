@@ -14,6 +14,7 @@ require('treesitter');
 require('telescope_setup');
 require('snippets');
 require('completion');
+require('tabs');
 require('dressing_setup');
 require('signature');
 require('mappings');
