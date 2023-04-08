@@ -33,7 +33,7 @@ cmp.setup({
 })
 
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig').pyright.setup { capabilities = capabilities }
 require('lspconfig').rust_analyzer.setup { capabilities = capabilities }
 require('lspconfig').kotlin_language_server.setup { capabilities = capabilities }

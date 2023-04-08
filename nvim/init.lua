@@ -17,6 +17,7 @@ require('completion');
 require('dressing_setup');
 require('signature');
 require('mappings');
+require('neovide');
 
 -- Make sure repeat.vim is loaded
 vim.cmd("runtime autoload/repeat.vim")

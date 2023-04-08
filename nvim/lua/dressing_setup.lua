@@ -1,7 +1,9 @@
 require('dressing').setup({
-  input = { 
-      winblend = 0,
-      winhighlight = "Normal:Normal",
+  input = {
+      win_options = {
+          winblend = 0,
+          winhighlight = "Normal:Normal",
+      },
   },
   select = {
     backend = { "telescope" },
