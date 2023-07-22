@@ -1,3 +1,6 @@
+-- Rust is one of the languages where the spellcheck works well
+vim.opt.spell = true
+
 local map = require('map')
 
 require('rust-tools').setup {

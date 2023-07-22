@@ -25,7 +25,7 @@ ray-x/lsp_signature.nvim
 # The best plugins ever
 bendk/polyword.vim
 
-# Easymotion-like jumping
+# Jump around
 phaazon/hop.nvim
 
 # color schema / statusline
@@ -52,7 +52,6 @@ PeterRincker/vim-searchlight
 
 # Telescope
 nvim-telescope/telescope.nvim
-nvim-telescope/telescope-fzy-native.nvim
 nvim-telescope/telescope-symbols.nvim
 BurntSushi/ripgrep
 

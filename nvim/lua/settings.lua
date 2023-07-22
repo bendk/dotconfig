@@ -3,12 +3,13 @@ vim.opt.hidden = true
 vim.opt.expandtab = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.spell = true
+vim.opt.mouse = ""
 
 -- Command tab completion 
 vim.opt.wildmenu = true
 vim.opt.wildmode = 'longest:full'
 vim.opt.shiftwidth = 4
+vim.opt.textwidth = 100
 vim.opt.showmode = false
 vim.opt.iskeyword:append("-")
 
