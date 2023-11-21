@@ -24,3 +24,4 @@
     defaultBranch = main
 [cinnabar]
 	helper = /home/bdk/.git-cinnabar/git-cinnabar-helper
+	version-check = 1700501148
