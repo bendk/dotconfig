@@ -1,10 +1,4 @@
-opt('o', 'termguicolors', true)
-vim.g.onedark_color_overrides = {
-    black = { gui = "#111316", cterm = "235", cterm16 = "0" },
-    background = { gui = "#111316", cterm = "235", cterm16 = "0" },
-}
-
--- Statusline
+-- Statusline helpers
 local in_progress_lsp_tokens = {}
 local function progress_callback(_, msg, client_id)
     if msg and msg.value and msg.value.kind then
@@ -23,7 +17,7 @@ local function progress_callback(_, msg, client_id)
 end
 vim.lsp.handlers['$/progress'] = progress_callback
 
-function _G.lsp_status()
+function lsp_status()
     local status = {}
     for token, progress in pairs(in_progress_lsp_tokens) do
         if progress ~= nil then
@@ -32,7 +26,7 @@ function _G.lsp_status()
                 (progress.title or "unknown")
                 .. " ("
                 .. (progress.percentage or 0)
-                .. "%)"
+                .. "%%)"
             )
         end
     end
@@ -43,14 +37,22 @@ function _G.lsp_status()
     end
 end
 
-vim.cmd('colorscheme onedark')
-vim.cmd([[
-function! LSPStatus()
-    return v:lua.lsp_status()
-endfunction
+-- setup theme
+require('night-owl').setup({italics=false})
 
-let g:lightline = { 'enable': { 'statusline': 1, 'tabline': 0}, 'colorscheme': 'onedark', 'active': { 'right': [ [ 'lineinfo' ], [ 'line' ], ['lsp_status'] ] }, 'component': {'line': '%l/%L', }, 'component_function': { 'lsp_status': 'LSPStatus' }, }
-]])
-
-vim.cmd('hi link Searchlight Diffadd')
-vim.cmd('hi link FloatBorder Normal')
+-- setup status line
+require('lualine').setup({
+    options = {
+        icons_enabled = false,
+        component_separators = {left = '', right = '' },
+        section_separators = {left = '', right = '' }
+    },
+    sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'filename'},
+        lualine_c = {},
+        lualine_x = {lsp_status},
+        lualine_y = {'encoding', 'filetype'},
+        lualine_z = {'location'}
+    }
+})

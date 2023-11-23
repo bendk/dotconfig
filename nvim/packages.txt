@@ -29,8 +29,8 @@ bendk/polyword.vim
 phaazon/hop.nvim
 
 # color schema / statusline
-joshdick/onedark.vim
-itchyny/lightline.vim
+bendk/night-owl.nvim
+nvim-lualine/lualine.nvim
 
 # vim.ui.select and vim.ui.input helper
 stevearc/dressing.nvim
