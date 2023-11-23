@@ -1,12 +1,15 @@
 -- Global functions
 
 local M = {}
+local inlay_hints = false
 
-function M.show_change_list()
-    local buf_count = vim.fn.bufnr('$')
-    for buf = 1,buf_count,1
-    do
-	print("buf: " .. buf .. " type: " .. vim.api.nvim_buf_get_option(buf, "buftype"))
+function M.toggle_inlay_hints()
+    if inlay_hints then
+        require('rust-tools').inlay_hints.unset()
+        inlay_hints = false
+    else
+        require('rust-tools').inlay_hints.set()
+        inlay_hints = true
     end
 end
 

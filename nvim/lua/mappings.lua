@@ -99,6 +99,7 @@ map.map('n', '<leader>g', '<cmd>Telescope live_grep<cr>')
 map.map('n', '<leader>r', '<cmd>Telescope resume<cr>')
 map.map('n', '<leader>c', '<cmd>Telescope commands<cr>')
 map.map('n', '<leader>w', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
+map.map('n', '<leader>i', map.command_lua('require("commands").toggle_inlay_hints()'))
 
 -- Leader: Buffer
 map.map('n', '<leader>bb', '<cmd>BufferLinePick<cr>')
