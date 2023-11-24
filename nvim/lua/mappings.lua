@@ -55,10 +55,6 @@ map.map('n', 'x,p', '<plug>(swap-prev)')
 map.map('n', 'x,n', '<plug>(swap-next)')
 map.map('nx', 'x,i', '<plug>(swap-interactive)')
 map.map('nx', 'x,e', '<cmd>ArgWrap<cr>')
-map.map('n', 'xl', '<Plug>LionLeft')
-map.map('x', 'xl', '<Plug>VLionLeft')
-map.map('n', 'xL', '<Plug>LionRight')
-map.map('x', 'xL', '<Plug>VLionRight')
 map.map('nx', 'xc', '<plug>TComment_gc')
 map.map('n', 'xcc', '<plug>TComment_gcc')
 map.map('n', 'xsa', 'zg')
@@ -132,5 +128,4 @@ vim.g.swap_no_default_key_mappings = true
 vim.g.sandwich_no_default_key_mappings = true
 vim.g.operator_sandwich_no_default_key_mappings = true
 vim.g.textobj_sandwich_no_default_key_mappings = true
-vim.g.lion_create_maps = false
 vim.g.tcomment_maps = false
