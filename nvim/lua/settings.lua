@@ -4,6 +4,7 @@ vim.opt.expandtab = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.mouse = ""
+vim.opt.helpheight=99999
 
 -- Command tab completion 
 vim.opt.wildmenu = true
