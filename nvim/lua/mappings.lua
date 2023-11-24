@@ -74,6 +74,15 @@ map.multi_map('o', map.CHARACTER_KEYCODES, 'f%s', 'v' .. map.call_lua('find', 'f
 map.multi_map('o', map.CHARACTER_KEYCODES, 'l%s', 'v' .. map.call_lua('find', 'to_forward([[%s]])'))
 -- Repeat last f/t
 map.map('', ';', map.call_lua('find', 'repeat_find()'))
+-- Space switchers buffers
+map.map('n', '<space>s', map.call_lua('bufferline', 'go_to(1)'))
+map.map('n', '<space>n', map.call_lua('bufferline', 'go_to(2)'))
+map.map('n', '<space>t', map.call_lua('bufferline', 'go_to(3)'))
+map.map('n', '<space>h', map.call_lua('bufferline', 'go_to(4)'))
+map.map('n', '<space>a', map.call_lua('bufferline', 'go_to(5)'))
+map.map('n', '<space>o', map.call_lua('bufferline', 'go_to(6)'))
+map.map('n', '<space>e', map.call_lua('bufferline', 'go_to(7)'))
+map.map('n', '<space>u', map.call_lua('bufferline', 'go_to(8)'))
 -- Leader
 map.map('n', '<leader>d', '<cmd>edit ~/txt/todo<cr>')
 map.map('n', '<leader>i', map.command_lua('require("commands").toggle_inlay_hints()'))
