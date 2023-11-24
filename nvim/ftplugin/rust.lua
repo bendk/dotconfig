@@ -11,7 +11,5 @@ require('rust-tools').setup {
     }
 }
 
-map.map('n', 'xm', "<cmd>:lua require'rust-tools'.expand_macro.expand_macro()<cr>")
-map.map('n', 'xt', "<cmd>RustOpenCargo<cr>")
-map.map('n', 'xid', "<cmd>RustMoveItemDown<cr>")
-map.map('n', 'xiu', "<cmd>RustMoveItemUp<cr>")
+map.map('n', ',lm', "<cmd>:lua require'rust-tools'.expand_macro.expand_macro()<cr>")
+map.map('n', ',lt', "<cmd>:lua require'rust-tools'.open_cargo_toml.open_cargo_toml()<cr>")

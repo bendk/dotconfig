@@ -1,7 +1,7 @@
 local map = require('map')
 
 -- Generic
-map.map('', 'H', map.call_lua('help', 'show_window()'))
+map.map('', 'h', map.call_lua('help', 'show_window()'))
 map.map('n', '<esc>', ':nohls<cr>')
 map.map('n', '.', '<Plug>(operator-sandwich-predot)<Plug>(RepeatDot)')
 --Hop
@@ -28,14 +28,14 @@ map.map('n', 'gcc', map.command('cc')) -- "Quickfix current"
 map.map('n', 'gco', map.command('copen')) -- "Quickfix show"
 map.map('n', 'ggp', map.command_lua('vim.diagnostic.goto_prev()'))
 map.map('n', 'ggn', map.command_lua('vim.diagnostic.goto_next()'))
-map.map('n', 'ggd', map.command_lua('vim.diagnostic.open_float()'))
+map.map('n', 'ggo', map.command_lua('vim.diagnostic.open_float()'))
 map.map('n', 'gd', map.command_lua('vim.lsp.buf.definition()'))
 map.map('n', 'gi', map.command_lua('vim.lsp.buf.implementation()'))
 map.map('n', 'gr', map.command_lua('vim.lsp.buf.references()'))
 map.map('n', 'gb', '<c-o>') -- Go back
 map.map('n', 'gf', '<c-i>') -- Go forward
 map.map('n', 'gm', '%') -- Go match
--- x -> "eXtra actions"
+-- x -> "eXtra actions".  These are alternative versions of normal mode commands
 map.map('', 'x', '<Nop>')
 map.map('', 'xw', '<plug>(polyword-miniword-w)')
 map.map('', 'xb', '<plug>(polyword-miniword-b)')
@@ -51,17 +51,8 @@ map.map('', 'xnk', '<plug>(polyword-transform-kebab)')
 map.map('', 'xnC', '<plug>(polyword-transform-pascal)')
 map.map('', 'xnS', '<plug>(polyword-transform-snake-upper)')
 map.map('', 'xnK', '<plug>(polyword-transform-kebab-upper)')
-map.map('n', 'x,p', '<plug>(swap-prev)')
-map.map('n', 'x,n', '<plug>(swap-next)')
-map.map('nx', 'x,i', '<plug>(swap-interactive)')
-map.map('nx', 'x,e', '<cmd>ArgWrap<cr>')
-map.map('nx', 'xc', '<plug>TComment_gc')
-map.map('n', 'xcc', '<plug>TComment_gcc')
-map.map('n', 'xsa', 'zg')
-map.map('n', 'xsA', 'zw')
-map.map('n', 'xss', 'z=')
-map.map('n', 'xa', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-map.map('n', 'xr', '<cmd>lua vim.lsp.buf.rename()<cr>')
+-- paste/yank/delete to/from clipboard/selection
+map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%s', '"+%s')
 -- text objects
 map.map('xo', 'im', '<plug>(polyword-miniword-iw)')
 map.map('xo', 'am', '<plug>(polyword-miniword-aw)')
@@ -83,28 +74,17 @@ map.multi_map('o', map.CHARACTER_KEYCODES, 'f%s', 'v' .. map.call_lua('find', 'f
 map.multi_map('o', map.CHARACTER_KEYCODES, 'l%s', 'v' .. map.call_lua('find', 'to_forward([[%s]])'))
 -- Repeat last f/t
 map.map('', ';', map.call_lua('find', 'repeat_find()'))
--- paste/yank/delete to/from clipboard/selection
-map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%s', '"+%s')
 -- Leader
 map.map('n', '<leader>d', '<cmd>edit ~/txt/todo<cr>')
-map.map('n', '<leader>s', '<cmd>set spell!<cr>')
-map.map('n', '<leader>to', '<cmd>lua require("terminal").open()<cr>')
-map.map('n', '<leader>tt', '<cmd>lua require("terminal").open_last()<cr>')
-map.map('n', '<leader>f', '<cmd>Telescope find_files<cr>')
-map.map('n', '<leader>g', '<cmd>Telescope live_grep<cr>')
-map.map('n', '<leader>r', '<cmd>Telescope resume<cr>')
-map.map('n', '<leader>c', '<cmd>Telescope commands<cr>')
-map.map('n', '<leader>w', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
 map.map('n', '<leader>i', map.command_lua('require("commands").toggle_inlay_hints()'))
-
+map.map('n', '<leader>r', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
+-- Visual leader
+map.map('x', '<Leader>c', '<plug>TComment_gc')
 -- Leader: Buffer
-map.map('n', '<leader>bb', '<cmd>BufferLinePick<cr>')
 map.map('n', '<leader>bn', '<cmd>bn<cr>')
 map.map('n', '<leader>bp', '<cmd>bp<cr>')
-map.map('n', '<leader>bi', '<cmd>BufferLineTogglePin<cr>')
 map.map('n', '<leader>bd', '<cmd>bd<cr>')
 map.map('n', '<leader>bw', '<cmd>w<cr>')
-
 -- Leader: Window
 map.map('n', '<leader>wc', '<c-w>c')
 map.map('n', '<leader>wo', '<c-w>o')
@@ -112,12 +92,26 @@ map.map('n', '<leader>w<down>', '<c-w><down>')
 map.map('n', '<leader>w<up>', '<c-w><up>')
 map.map('n', '<leader>w<left>', '<c-w><left>')
 map.map('n', '<leader>w<right>', '<c-w><right>')
-
--- <leader>l is filetype-specific.  Look in the ftplugin files for specifics
-
+-- Leader: Telescope
+map.map('n', '<leader>cf', '<cmd>Telescope find_files<cr>')
+map.map('n', '<leader>cg', '<cmd>Telescope live_grep<cr>')
+map.map('n', '<leader>cr', '<cmd>Telescope resume<cr>')
+map.map('n', '<leader>cc', '<cmd>Telescope commands<cr>')
+-- Leader: Comma
+map.map('n', '<Leader>,p', '<plug>(swap-prev)')
+map.map('n', '<Leader>,n', '<plug>(swap-next)')
+map.map('nx', '<Leader>,i', '<plug>(swap-interactive)')
+map.map('nx', '<Leader>,e', '<cmd>ArgWrap<cr>')
+-- Leader: Spell
+map.map('n', '<leader>st', '<cmd>set spell!<cr>')
+map.map('n', '<leader>ss', 'z=')
+map.map('n', '<leader>sa', 'zg')
+map.map('n', '<leader>sr', 'zw')
+-- Leader: Terminal
+map.map('n', '<leader>to', '<cmd>lua require("terminal").open()<cr>')
+map.map('n', '<leader>tt', '<cmd>lua require("terminal").open_last()<cr>')
 -- Insert mode
 map.map('i', '<c-h>', '<c-o><cmd>lua vim.lsp.buf.hover()<cr>')
-
 -- Unmap keys that I don't want to use
 map.map('', 'gg', '<nop>')
 map.map('', 'G', '<nop>')
