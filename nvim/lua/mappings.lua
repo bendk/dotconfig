@@ -86,7 +86,9 @@ map.map('n', '<space>u', map.call_lua('bufferline', 'go_to(8)'))
 -- Leader
 map.map('n', '<leader>d', '<cmd>edit ~/txt/todo<cr>')
 map.map('n', '<leader>i', map.command_lua('require("commands").toggle_inlay_hints()'))
-map.map('n', '<leader>r', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
+map.map('n', '<leader>z', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
+map.map('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+map.map('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>')
 -- Visual leader
 map.map('x', '<Leader>c', '<plug>TComment_gc')
 -- Leader: Buffer

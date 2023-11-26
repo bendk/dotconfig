@@ -1,5 +1,6 @@
 require('dressing').setup({
   input = {
+      start_in_insert = false,
       win_options = {
           winblend = 0,
           winhighlight = "Normal:Normal",

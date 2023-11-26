@@ -75,6 +75,10 @@ local HELP_TEXT = {
         {",lm", "Rust: Expand macro"},
         {",lt", "Rust: Open cargo.toml"},
     },
+    {
+        {"Other"},
+        {",z", "Delete trailing whitespace"},
+    },
 };
 
 local HELP_TEXT_COLUMN_WIDTH = 30
