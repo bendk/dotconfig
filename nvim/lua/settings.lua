@@ -22,4 +22,11 @@ vim.opt.grepformat='%f:%l:%c:%m,%f:%l:%m'
 vim.opt.list = true
 vim.opt.listchars = 'tab:>-,trail:-'
 
-require'hop'.setup { keys = 'abcdefghijklmnopqrstuvwxyz', perm='TrieBacktrackFilling',}
+-- Flash
+require('flash').setup({
+    labels = "aoeusnth;qjkzvwm',.plrcgyfidxb",
+    modes = {
+        char = { autohide = true },
+        search = { enabled = false },
+    }
+})

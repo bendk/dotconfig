@@ -58,6 +58,3 @@ require('lualine').setup({
 })
 
 -- Customize highlight groups
-vim.api.nvim_set_hl(0, "HopNextKey", {link="Error"})
-vim.api.nvim_set_hl(0, "HopNextKey1", {link="Error"})
-vim.api.nvim_set_hl(0, "HopNextKey2", {link="Error"})
