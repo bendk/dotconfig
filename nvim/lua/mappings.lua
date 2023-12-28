@@ -3,7 +3,6 @@ local map = require('map')
 -- Generic
 map.map('', 'h', map.call_lua('help', 'show_window()'))
 map.map('n', '<esc>', ':nohls<cr>')
-map.map('n', '.', '<Plug>(operator-sandwich-predot)<Plug>(RepeatDot)')
 -- Flash
 map.map('', 'j', map.call_lua('flash', 'jump()'))
 map.map('', 'j<cr>', map.call_lua('flash', 'jump({search = { mode = "search", max_length = 0 }, label = { after = { 0, 0 } }, pattern = "^" })'))
