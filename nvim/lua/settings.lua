@@ -2,6 +2,8 @@
 vim.opt.hidden = true
 vim.opt.expandtab = true
 vim.opt.ignorecase = true
+vim.opt.foldenable = false
+vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.mouse = ""
 vim.opt.helpheight=99999

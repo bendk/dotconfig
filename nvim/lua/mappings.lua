@@ -7,8 +7,6 @@ map.map('n', '<esc>', ':nohls<cr>')
 map.map('', 'j', map.call_lua('flash', 'jump()'))
 map.map('', 'j<cr>', map.call_lua('flash', 'jump({search = { mode = "search", max_length = 0 }, label = { after = { 0, 0 } }, pattern = "^" })'))
 map.map('', 'j<space>', map.call_lua('flash', 'treesitter()'))
--- z -> buffers
-map.map('n', 'z', '<cmd>BufferPick<cr>')
 -- Sandwich
 map.map('n', 'ds', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)')
 map.map('n', 'dss', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)')
@@ -45,12 +43,6 @@ map.map('', 'W', '<plug>(polyword-megaword-w)')
 map.map('', 'B', '<plug>(polyword-megaword-b)')
 map.map('', 'E', '<plug>(polyword-megaword-e)')
 map.map('', 'gE', '<plug>(polyword-megaword-ge)')
-map.map('', 'xnc', '<plug>(polyword-transform-camel)')
-map.map('', 'xns', '<plug>(polyword-transform-snake)')
-map.map('', 'xnk', '<plug>(polyword-transform-kebab)')
-map.map('', 'xnC', '<plug>(polyword-transform-pascal)')
-map.map('', 'xnS', '<plug>(polyword-transform-snake-upper)')
-map.map('', 'xnK', '<plug>(polyword-transform-kebab-upper)')
 -- paste/yank/delete to/from clipboard/selection
 map.multi_map('nx', {'p', 'P', 'y', 'd'}, 'x%s', '"+%s')
 -- text objects
@@ -64,25 +56,8 @@ map.map('xo', 'is', '<plug>(textobj-sandwich-query-i)')
 map.map('xo', 'as', '<plug>(textobj-sandwich-query-a)')
 map.map('xo', 'iss', '<plug>(textobj-sandwich-auto-i)')
 map.map('xo', 'ass', '<plug>(textobj-sandwich-auto-a)')
--- To/find
--- map.multi_map('', map.CHARACTER_KEYCODES, 'f%s', map.call_lua('find', 'find_forward([[%s]])'))
--- map.multi_map('', map.CHARACTER_KEYCODES, 'l%s', map.call_lua('find', 'to_forward([[%s]])'))
--- map.multi_map('', map.CHARACTER_KEYCODES, 'F%s', map.call_lua('find', 'find_backward([[%s]])'))
--- map.multi_map('', map.CHARACTER_KEYCODES, 'L%s', map.call_lua('find', 'to_backward([[%s]])'))
--- -- Make forward finding inclusive
--- map.multi_map('o', map.CHARACTER_KEYCODES, 'f%s', 'v' .. map.call_lua('find', 'find_forward([[%s]])'))
--- map.multi_map('o', map.CHARACTER_KEYCODES, 'l%s', 'v' .. map.call_lua('find', 'to_forward([[%s]])'))
--- -- Repeat last f/t
--- map.map('', ';', map.call_lua('find', 'repeat_find()'))
 -- Space switchers buffers
-map.map('n', '<space>s', map.call_lua('bufferline', 'go_to(1)'))
-map.map('n', '<space>n', map.call_lua('bufferline', 'go_to(2)'))
-map.map('n', '<space>t', map.call_lua('bufferline', 'go_to(3)'))
-map.map('n', '<space>h', map.call_lua('bufferline', 'go_to(4)'))
-map.map('n', '<space>a', map.call_lua('bufferline', 'go_to(5)'))
-map.map('n', '<space>o', map.call_lua('bufferline', 'go_to(6)'))
-map.map('n', '<space>e', map.call_lua('bufferline', 'go_to(7)'))
-map.map('n', '<space>u', map.call_lua('bufferline', 'go_to(8)'))
+map.map('n', '<space>', map.call_lua('cokeline.mappings', 'pick("focus")'))
 -- Leader
 map.map('n', '<leader>z', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
 map.map('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
@@ -119,6 +94,13 @@ map.map('n', '<leader>st', '<cmd>set spell!<cr>')
 map.map('n', '<leader>ss', 'z=')
 map.map('n', '<leader>sa', 'zg')
 map.map('n', '<leader>sr', 'zw')
+-- Leader: Naming
+map.map('', '<leader>nc', '<plug>(polyword-transform-camel)')
+map.map('', '<leader>ns', '<plug>(polyword-transform-snake)')
+map.map('', '<leader>nk', '<plug>(polyword-transform-kebab)')
+map.map('', '<leader>nC', '<plug>(polyword-transform-pascal)')
+map.map('', '<leader>nS', '<plug>(polyword-transform-snake-upper)')
+map.map('', '<leader>nK', '<plug>(polyword-transform-kebab-upper)')
 -- Leader: LSP
 -- Note: some of these are setup in the ftplugin files
 map.map('n', '<leader>li', map.command_lua('require("commands").toggle_inlay_hints()'))

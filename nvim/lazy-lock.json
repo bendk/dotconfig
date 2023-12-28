@@ -1,6 +1,5 @@
 {
   "DeleteTrailingWhitespace": { "branch": "master", "commit": "62fe08aff3c3a020e483386f5c3e90c2e85e24b0" },
-  "bufferline.nvim": { "branch": "main", "commit": "e48ce1805697e4bb97bc171c081e849a65859244" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
@@ -15,10 +14,10 @@
   "mason.nvim": { "branch": "main", "commit": "41e75af1f578e55ba050c863587cffde3556ffa6" },
   "night-owl.nvim": { "branch": "main", "commit": "ced89d33ecc2d38f04581f23b0170399d56cbe41" },
   "nvim-cmp": { "branch": "main", "commit": "538e37ba87284942c1d76ed38dd497e54e65b891" },
+  "nvim-cokeline": { "branch": "main", "commit": "07069496c3a25c3d9956292d05008ca17036afe0" },
   "nvim-lspconfig": { "branch": "master", "commit": "9099871a7c7e1c16122e00d70208a2cd02078d80" },
   "nvim-snippy": { "branch": "master", "commit": "7c8f18e90cad4f56c4e22a49101668735639f286" },
   "nvim-treesitter": { "branch": "master", "commit": "7a2c6211d6f550988fccd8800de8426d5e480a2d" },
-  "nvim-web-devicons": { "branch": "master", "commit": "43aa2ddf476012a2155f5f969ee55ab17174da7a" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
   "polyword.vim": { "branch": "main", "commit": "8ab6542cad6b72de977705e668594c2a08745662" },
   "ripgrep": { "branch": "master", "commit": "3f2fe0afee0d1a1eeb3235904cfef4f35c4644dc" },
