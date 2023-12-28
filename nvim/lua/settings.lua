@@ -25,6 +25,9 @@ vim.opt.listchars = 'tab:>-,trail:-'
 -- Flash
 require('flash').setup({
     labels = "aoeusnth;qjkzvwm',.plrcgyfidxb",
+    label = {
+        uppercase = false,
+    },
     modes = {
         char = { autohide = true },
         search = { enabled = false },

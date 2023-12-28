@@ -85,13 +85,14 @@ map.map('n', '<space>o', map.call_lua('bufferline', 'go_to(6)'))
 map.map('n', '<space>e', map.call_lua('bufferline', 'go_to(7)'))
 map.map('n', '<space>u', map.call_lua('bufferline', 'go_to(8)'))
 -- Leader
-map.map('n', '<leader>d', '<cmd>edit ~/txt/todo<cr>')
-map.map('n', '<leader>i', map.command_lua('require("commands").toggle_inlay_hints()'))
 map.map('n', '<leader>z', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
 map.map('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
 map.map('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>')
 -- Visual leader
 map.map('x', '<Leader>c', '<plug>TComment_gc')
+-- Leader: Documents
+map.map('n', '<leader>dt', '<cmd>edit ~/txt/todo.md<cr>')
+map.map('n', '<leader>dl', '<cmd>edit ~/txt/worklog.md<cr>')
 -- Leader: Buffer
 map.map('n', '<leader>bn', '<cmd>bn<cr>')
 map.map('n', '<leader>bp', '<cmd>bp<cr>')
@@ -119,6 +120,9 @@ map.map('n', '<leader>st', '<cmd>set spell!<cr>')
 map.map('n', '<leader>ss', 'z=')
 map.map('n', '<leader>sa', 'zg')
 map.map('n', '<leader>sr', 'zw')
+-- Leader: LSP
+-- Note: some of these are setup in the ftplugin files
+map.map('n', '<leader>li', map.command_lua('require("commands").toggle_inlay_hints()'))
 -- Leader: Terminal
 map.map('n', '<leader>to', '<cmd>lua require("terminal").open()<cr>')
 map.map('n', '<leader>tt', '<cmd>lua require("terminal").open_last()<cr>')

@@ -74,6 +74,12 @@ local HELP_TEXT = {
         {",r", "Rename"},
         {",lm", "Rust: Expand macro"},
         {",lt", "Rust: Open cargo.toml"},
+        {",li", "Toggle inlay hints"},
+    },
+    {
+        {"[,d] Documents"},
+        {"t", "Todo"},
+        {"l", "Work log"},
     },
     {
         {"Other"},
