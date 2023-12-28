@@ -66,7 +66,7 @@ map.map('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>')
 map.map('x', '<Leader>c', '<plug>TComment_gc')
 -- Leader: Documents
 map.map('n', '<leader>dt', '<cmd>edit ~/txt/todo.md<cr>')
-map.map('n', '<leader>dl', '<cmd>edit ~/txt/worklog.md<cr>')
+map.map('n', '<leader>dw', '<cmd>edit ~/txt/worklog.md<cr>')
 -- Leader: Buffer
 map.map('n', '<leader>bn', '<cmd>bn<cr>')
 map.map('n', '<leader>bp', '<cmd>bp<cr>')
@@ -81,6 +81,7 @@ map.map('n', '<leader>w<left>', '<c-w><left>')
 map.map('n', '<leader>w<right>', '<c-w><right>')
 -- Leader: Telescope
 map.map('n', '<leader>cf', '<cmd>Telescope find_files<cr>')
+map.map('n', '<leader>cn', map.call_lua('telescope.builtin', 'find_files { cwd = "~/notes" }'))
 map.map('n', '<leader>cg', '<cmd>Telescope live_grep<cr>')
 map.map('n', '<leader>cr', '<cmd>Telescope resume<cr>')
 map.map('n', '<leader>cc', '<cmd>Telescope commands<cr>')
