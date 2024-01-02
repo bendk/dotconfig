@@ -46,4 +46,11 @@ return {
         ft="rust",
     },
     "udalov/kotlin-vim",
+    {
+        "bendk/markdown-list-tools",
+        ft = "markdown",
+        config = function()
+            require("markdown-list-tools").setup()
+        end
+    },
 }
