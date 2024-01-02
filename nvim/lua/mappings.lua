@@ -65,8 +65,7 @@ map.map('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>')
 -- Visual leader
 map.map('x', '<Leader>c', '<plug>TComment_gc')
 -- Leader: Documents
-map.map('n', '<leader>dt', '<cmd>edit ~/txt/todo.md<cr>')
-map.map('n', '<leader>dw', '<cmd>edit ~/txt/worklog.md<cr>')
+map.map('n', '<leader>d', '<cmd>edit ~/notes/mozilla/todo.md<cr>')
 -- Leader: Buffer
 map.map('n', '<leader>bn', '<cmd>bn<cr>')
 map.map('n', '<leader>bp', '<cmd>bp<cr>')
