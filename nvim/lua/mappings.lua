@@ -66,7 +66,8 @@ map.map('nx', '<leader>x', map.call_lua('markdown-list-tools', 'toggle_checkbox(
 -- Visual leader
 map.map('x', '<Leader>c', '<plug>TComment_gc')
 -- Leader: Documents
-map.map('n', '<leader>d', '<cmd>edit ~/notes/mozilla/todo.md<cr>')
+map.map('n', '<leader>dt', '<cmd>edit ~/notes/mozilla/todo.md<cr>')
+map.map('n', '<leader>dl', '<cmd>edit ~/notes/mozilla/worklog.md<cr>')
 -- Leader: Buffer
 map.map('n', '<leader>bn', '<cmd>bn<cr>')
 map.map('n', '<leader>bp', '<cmd>bp<cr>')
@@ -83,8 +84,9 @@ map.map('n', '<leader>w<right>', '<c-w><right>')
 map.map('n', '<leader>cf', '<cmd>Telescope find_files<cr>')
 map.map('n', '<leader>cn', map.call_lua('telescope.builtin', 'find_files { cwd = "~/notes" }'))
 map.map('n', '<leader>cg', '<cmd>Telescope live_grep<cr>')
-map.map('n', '<leader>cr', '<cmd>Telescope resume<cr>')
-map.map('n', '<leader>cc', '<cmd>Telescope commands<cr>')
+map.map('n', '<leader>cr', '<cmd>Telescope oldfiles cwd_only=true<cr>')
+map.map('n', '<leader>cm', '<cmd>Telescope commands<cr>')
+map.map('n', '<leader>cc', '<cmd>Telescope resume<cr>')
 -- Leader: Comma
 map.map('n', '<Leader>,p', '<plug>(swap-prev)')
 map.map('n', '<Leader>,n', '<plug>(swap-next)')
