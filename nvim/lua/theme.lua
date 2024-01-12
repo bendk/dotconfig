@@ -37,9 +37,6 @@ function lsp_status()
     end
 end
 
--- setup theme
-require('night-owl').setup({italics=false})
-
 -- setup status line
 require('lualine').setup({
     options = {
@@ -58,3 +55,6 @@ require('lualine').setup({
 })
 
 -- Customize highlight groups
+vim.api.nvim_set_hl(0, "HopNextKey", {link="Error"})
+vim.api.nvim_set_hl(0, "HopNextKey1", {link="Error"})
+vim.api.nvim_set_hl(0, "HopNextKey2", {link="Error"})

@@ -3,10 +3,9 @@ local map = require('map')
 -- Generic
 map.map('', 'h', map.call_lua('help', 'show_window()'))
 map.map('n', '<esc>', ':nohls<cr>')
--- Flash
-map.map('', 'j', map.call_lua('flash', 'jump()'))
-map.map('', 'j<cr>', map.call_lua('flash', 'jump({search = { mode = "search", max_length = 0 }, label = { after = { 0, 0 } }, pattern = "^" })'))
-map.map('', 'j<space>', map.call_lua('flash', 'treesitter()'))
+-- Hop
+map.map('', 'j', map.call_lua('hop', 'hint_char1()'))
+map.map('', 'j<cr>', map.call_lua('hop', 'hint_lines_skip_whitespace()'))
 -- Sandwich
 map.map('n', 'ds', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)')
 map.map('n', 'dss', '<Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)')

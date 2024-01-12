@@ -3,6 +3,9 @@ return {
         -- color scheme
         "bendk/night-owl.nvim",
         priority=1000,
+        opts = {
+            italics=false,
+        },
     },
     "nvim-lualine/lualine.nvim", -- statusline
     {
