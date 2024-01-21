@@ -16,12 +16,13 @@ return {
                     virtual_text = false,
                     signs = true,
                     underline = false,
-                    update_in_insert = false
+                    update_in_insert = true
                 }
             )
             require'lspconfig'.pyright.setup{}
             require'lspconfig'.rust_analyzer.setup{}
             require'lspconfig'.kotlin_language_server.setup{}
+            require'lspconfig'.svelte.setup{}
         end,
     },
     "nvim-treesitter/nvim-treesitter",

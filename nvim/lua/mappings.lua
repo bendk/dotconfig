@@ -110,11 +110,29 @@ map.map('n', '<leader>li', map.command_lua('require("commands").toggle_inlay_hin
 map.map('n', '<leader>to', '<cmd>lua require("terminal").open()<cr>')
 map.map('n', '<leader>tt', '<cmd>lua require("terminal").open_last()<cr>')
 -- Insert mode
-map.map('i', '<c-h>', '<c-o><cmd>lua vim.lsp.buf.hover()<cr>')
+map.map('i', '<c-s>', '<cr><tab><cr><up><c-o>$')
+map.map('i', '<c-h>', map.call_lua('tags', 'move_to_tag_end()'))
+map.map('n', '<c-h>', map.call_lua('tags', 'move_to_tag_end()'))
+-- c-n and c-p navigate snippets, with no fallback to the default bindings
+vim.keymap.set('i', '<c-n>', function()
+    local snippy = require('snippy')
+    if snippy.can_jump(1) then
+        snippy.next()
+    end
+end)
+vim.keymap.set('i', '<c-p>', function()
+    local snippy = require('snippy')
+    if snippy.can_jump(-1) then
+        snippy.previous()
+    end
+end)
+
 -- Unmap keys that I don't want to use
 map.map('', 'gg', '<nop>')
 map.map('', 'G', '<nop>')
 map.map('', 'Q', '<nop>')
+map.map('n', '<c-n>', '<nop>')
+map.map('n', '<c-p>', '<nop>')
 
 -- Disable default plugin mappings
 vim.g.swap_no_default_key_mappings = true

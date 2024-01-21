@@ -1,13 +1,14 @@
 -- Syntax highlighting using treesitter
 
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "lua", "rust", "toml", "python", "kotlin", "c", "cpp" },
+    ensure_installed = { "lua", "rust", "toml", "python", "kotlin", "c", "cpp", "javascript", "typescript", "html", "css", "svelte" },
     highlight = {
 	enable = true,
+        use_languagetree = true,
         additional_vim_regex_highlighting=false,
     },
     indent = {
-	enable = false
+	enable = true
     },
     textobjects = {
 	select = {
