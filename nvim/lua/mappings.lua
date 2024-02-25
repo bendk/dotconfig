@@ -91,7 +91,7 @@ map.map('n', '<leader>cc', '<cmd>Telescope resume<cr>')
 map.map('n', '<Leader>,p', '<plug>(swap-prev)')
 map.map('n', '<Leader>,n', '<plug>(swap-next)')
 map.map('nx', '<Leader>,i', '<plug>(swap-interactive)')
-map.map('nx', '<Leader>,e', '<cmd>ArgWrap<cr>')
+map.map('nx', '<Leader>,e', map.call_lua('treesj', 'toggle()'))
 -- Leader: Spell
 map.map('n', '<leader>st', '<cmd>set spell!<cr>')
 map.map('n', '<leader>ss', 'z=')
@@ -106,7 +106,8 @@ map.map('', '<leader>nS', '<plug>(polyword-transform-snake-upper)')
 map.map('', '<leader>nK', '<plug>(polyword-transform-kebab-upper)')
 -- Leader: LSP
 -- Note: some of these are setup in the ftplugin files
-map.map('n', '<leader>li', map.command_lua('require("commands").toggle_inlay_hints()'))
+map.map('n', '<leader>li', map.command_lua('vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())'))
+
 -- Leader: Terminal
 map.map('n', '<leader>to', '<cmd>lua require("terminal").open()<cr>')
 map.map('n', '<leader>tt', '<cmd>lua require("terminal").open_last()<cr>')

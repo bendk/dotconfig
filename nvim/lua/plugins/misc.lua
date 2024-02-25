@@ -1,7 +1,7 @@
 return {
     "vim-scripts/DeleteTrailingWhitespace",
     "machakann/vim-swap",
-    "FooSoft/vim-argwrap",
+    "Wansmer/treesj",
     "tomtom/tcomment_vim",
     {
         "bendk/polyword.vim"

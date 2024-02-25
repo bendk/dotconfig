@@ -37,14 +37,7 @@ return {
     },
     "rust-lang/rust.vim",
     {
-        "simrat39/rust-tools.nvim",
-        opts = {
-            tools = {
-                inlay_hints = {
-                    auto = false,
-                }
-            }
-        },
+        "mrcjkb/rustaceanvim",
         ft="rust",
     },
     "udalov/kotlin-vim",
