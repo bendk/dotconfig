@@ -61,7 +61,8 @@ map.map('n', '<space>', map.call_lua('cokeline.mappings', 'pick("focus")'))
 map.map('n', '<leader>z', '<cmd>DeleteTrailingWhitespace<cr><cmd>retab<cr>')
 map.map('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
 map.map('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>')
-map.map('nx', '<leader>x', map.call_lua('markdown-list-tools', 'toggle_checkbox()'))
+map.map('nx', '<leader>mm', map.call_lua('markdown-list-tools', 'toggle_checkbox()'))
+map.map('nx', '<leader>mt', map.call_lua('markdown-list-tools', 'toggle_checkbox_present()'))
 -- Visual leader
 map.map('x', '<Leader>c', '<plug>TComment_gc')
 -- Leader: Documents
@@ -110,7 +111,10 @@ map.map('n', '<leader>li', map.command_lua('require("commands").toggle_inlay_hin
 map.map('n', '<leader>to', '<cmd>lua require("terminal").open()<cr>')
 map.map('n', '<leader>tt', '<cmd>lua require("terminal").open_last()<cr>')
 -- Insert mode
-map.map('i', '<c-s>', '<cr><tab><cr><up><c-o>$')
+map.map('i', '<c-w>', '<cr><tab><cr><up><c-o>$')
+map.map('i', '<c-s>', map.call_lua('tags', 'close_tag()'))
+-- repeate last tag
+-- fix this
 map.map('i', '<c-h>', map.call_lua('tags', 'move_to_tag_end()'))
 map.map('n', '<c-h>', map.call_lua('tags', 'move_to_tag_end()'))
 -- c-n and c-p navigate snippets, with no fallback to the default bindings

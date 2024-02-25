@@ -23,6 +23,7 @@ return {
             require'lspconfig'.rust_analyzer.setup{}
             require'lspconfig'.kotlin_language_server.setup{}
             require'lspconfig'.svelte.setup{}
+            require'lspconfig'.tsserver.setup{}
         end,
     },
     "nvim-treesitter/nvim-treesitter",

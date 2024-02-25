@@ -5,10 +5,10 @@ return {
         local get_hl_attr = require('cokeline.hlgroups').get_hl_attr
         require('cokeline').setup({
             default_hl = {
-                fg = function(buffer) return (buffer.is_focused) and "Title" or "StatusLine" end,
-                bg = "StatusLine",
+                fg = function(buffer) return (buffer.is_focused) and "Title" or "Normal" end,
+                bg = "Normal",
             },
-            fill_hl = "StatusLine",
+            fill_hl = "Normal",
             components = {
                 {
                     text = function(buffer)

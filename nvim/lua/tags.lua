@@ -22,7 +22,7 @@ local dont_close = {
     menuitem = true,
 }
 
-local function tag_name_for_node(node)
+local function tag_name_for_node_html(node)
     if node:type() == "element" then
         node = node:named_child(0)
     else
@@ -38,6 +38,28 @@ local function tag_name_for_node(node)
     else
         return nil
     end
+end
+
+local function tag_name_for_node_jsx(node)
+    if node:type() == "jsx_element" then
+        node = node:named_child(0)
+    else
+        return nil
+    end
+    if node and node:type() == "jsx_opening_element" then
+        node = node:named_child(0)
+    else
+        return nil
+    end
+    if node and node:type() == "identifier" then
+        return vim.treesitter.get_node_text(node, 0)
+    else
+        return nil
+    end
+end
+
+local function tag_name_for_node(node)
+    return tag_name_for_node_html(node) or tag_name_for_node_jsx(node)
 end
 
 local function find_tag_name()
@@ -59,7 +81,7 @@ end
 function M.close_tag()
     local tag_name = find_tag_name()
     if tag_name then
-        vim.fn.feedkeys("</" .. tag_name .. ">")
+        vim.fn.feedkeys("</" .. tag_name .. ">" .. vim.api.nvim_replace_termcodes("<c-o>", true, true, true) .. "==")
     end
 end
 
@@ -71,7 +93,6 @@ function M.move_to_tag_end()
         node = node:parent()
     end
     local row, col = node:end_()
-    print(row, col)
     vim.api.nvim_win_set_cursor(0, {row + 1, col})
 end
 

@@ -121,3 +121,14 @@ backends
 Hardcode
 UniFFI's
 vec
+failable
+serde's
+serializer
+serde
+unparsable
+unicode
+JSON
+VLQ
+ints
+UInt8Array
+base64
