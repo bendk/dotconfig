@@ -1,6 +1,6 @@
 return {
     "willothy/nvim-cokeline",
-    dependencies="bendk/night-owl.nvim",
+    dependencies="oxfist/night-owl.nvim",
     config = function()
         local get_hl_attr = require('cokeline.hlgroups').get_hl_attr
         require('cokeline').setup({

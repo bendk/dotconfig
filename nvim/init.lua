@@ -15,7 +15,6 @@ vim.g.mapleader = ","
 
 require("lazy").setup("plugins")
 
-require('commands')
 require('settings')
 require('theme')
 require('treesitter')

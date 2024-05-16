@@ -3,9 +3,12 @@ return {
         -- color scheme
         "oxfist/night-owl.nvim",
         priority=1000,
-        opts = {
-            italics=false,
-        },
+        config = function()
+            require("night-owl").setup({
+                italics=false,
+            })
+            vim.cmd("colorscheme night-owl")
+        end
     },
     "nvim-lualine/lualine.nvim", -- statusline
     {

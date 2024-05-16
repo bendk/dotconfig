@@ -133,3 +133,6 @@ ints
 UInt8Array
 base64
 endianness
+favicons
+OHTTP
+FfiSerialize
