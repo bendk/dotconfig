@@ -106,7 +106,8 @@ map.map('', '<leader>nS', '<plug>(polyword-transform-snake-upper)')
 map.map('', '<leader>nK', '<plug>(polyword-transform-kebab-upper)')
 -- Leader: LSP
 -- Note: some of these are setup in the ftplugin files
-map.map('n', '<leader>li', map.command_lua('vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())'))
+map.map('n', '<leader>li', map.command_lua('vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())'))
+map.map('n', '<leader>ll', map.command_lua('vim.lsp.buf.hover()'))
 
 -- Leader: Terminal
 map.map('n', '<leader>to', '<cmd>lua require("terminal").open()<cr>')

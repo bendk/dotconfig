@@ -35,10 +35,11 @@ return {
             }
         end,
     },
-    "rust-lang/rust.vim",
     {
-        "mrcjkb/rustaceanvim",
-        ft="rust",
+        'vxpm/ferris.nvim',
+        opts = {
+            create_commands = false
+        }
     },
     "udalov/kotlin-vim",
     {
