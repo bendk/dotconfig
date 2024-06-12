@@ -2,7 +2,7 @@ local M = {}
 local last_cmd = ""
 
 local function run_term()
-    vim.cmd('FloatermNew --title=' .. last_cmd:gsub(" ", "\\ ") .. ' --width=0.9 --height=0.9 --autoclose=0 ' .. last_cmd)
+    vim.cmd('FloatermNew  --width=0.9 --height=0.9 --autoclose=0 ' .. last_cmd)
 end
 
 function M.open()
