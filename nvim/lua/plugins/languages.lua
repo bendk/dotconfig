@@ -9,22 +9,6 @@ return {
     "williamboman/mason-lspconfig.nvim",
     {
         "neovim/nvim-lspconfig",
-        config = function()
-            vim.cmd('sign define LspDiagnosticsSignError text=! texthl=LspDiagnosticsSignError linehl= numhl=')
-            vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-                vim.lsp.diagnostic.on_publish_diagnostics, {
-                    virtual_text = false,
-                    signs = true,
-                    underline = false,
-                    update_in_insert = true
-                }
-            )
-            require'lspconfig'.pyright.setup{}
-            require'lspconfig'.rust_analyzer.setup{}
-            require'lspconfig'.kotlin_language_server.setup{}
-            require'lspconfig'.svelte.setup{}
-            require'lspconfig'.ts_ls.setup{}
-        end,
     },
     "nvim-treesitter/nvim-treesitter",
     {
