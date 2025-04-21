@@ -45,6 +45,7 @@ return {
             require('lspconfig').pyright.setup { capabilities = capabilities }
             require('lspconfig').rust_analyzer.setup { capabilities = capabilities }
             require('lspconfig').kotlin_language_server.setup { capabilities = capabilities }
+            require('lspconfig').ts_ls.setup { capabilities = capabilities }
         end,
     },
     "hrsh7th/cmp-buffer",
