@@ -114,9 +114,7 @@ map.map('n', '<leader>to', '<cmd>lua require("terminal").open()<cr>')
 map.map('n', '<leader>tt', '<cmd>lua require("terminal").open_last()<cr>')
 -- Insert mode
 map.map('i', '<c-w>', '<cr><tab><cr><up><c-o>$')
-map.map('i', '<c-s>', map.call_lua('tags', 'close_tag()'))
--- repeate last tag
--- fix this
+map.map('i', '<c-s>', '<lt>/<cmd>lua require("cmp").complete()<cr><cmd>lua require("cmp").confirm({select=true})<cr>')
 map.map('i', '<c-h>', map.call_lua('tags', 'move_to_tag_end()'))
 map.map('n', '<c-h>', map.call_lua('tags', 'move_to_tag_end()'))
 -- c-n and c-p navigate snippets, with no fallback to the default bindings

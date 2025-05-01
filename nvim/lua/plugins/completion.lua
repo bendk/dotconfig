@@ -10,8 +10,8 @@ return {
                     ['<down>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c', }),
                     ['<up>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c', }),
                     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-                    ['<C-n>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-                    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+                    ['<C-n>'] = cmp.config.disable,
+                    ['<C-y>'] = cmp.config.disable,
                     ['<C-e>'] = cmp.mapping({
                         i = cmp.mapping.abort(),
                         c = cmp.mapping.close(),
@@ -69,4 +69,3 @@ return {
         end,
     },
 }
-

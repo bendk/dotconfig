@@ -23,7 +23,7 @@
     defaultBranch = main
 [cinnabar]
 	helper = /home/bdk/.git-cinnabar/git-cinnabar-helper
-	version-check = 1745003781
+	version-check = 1746035932
 [pull]
 	rebase = true
 [rebase]
