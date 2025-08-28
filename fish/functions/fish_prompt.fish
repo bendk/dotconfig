@@ -24,10 +24,8 @@ function fish_prompt
 end
 
 function fish_prompt_host
-  if test (hostname) != "pitpat"
-    set_color $mustard
-    echo -n (whoami)"@"(hostname)" "
-  end
+  set_color $mustard
+  echo -n (whoami)"@"(prompt_hostname)" "
 end
 
 function fish_prompt_directory
