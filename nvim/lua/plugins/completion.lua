@@ -42,10 +42,10 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            require('lspconfig').pyright.setup { capabilities = capabilities }
-            require('lspconfig').rust_analyzer.setup { capabilities = capabilities }
-            require('lspconfig').kotlin_language_server.setup { capabilities = capabilities }
-            require('lspconfig').ts_ls.setup { capabilities = capabilities }
+            vim.lsp.config("pyright", { capabilities = capabilities })
+            vim.lsp.config("rust_analyzer", { capabilities = capabilities })
+            vim.lsp.config("kotlin_language_server", { capabilities = capabilities })
+            vim.lsp.config("ts_ls", { capabilities = capabilities })
         end,
     },
     "hrsh7th/cmp-buffer",
