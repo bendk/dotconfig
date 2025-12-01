@@ -33,4 +33,10 @@ return {
             require("markdown-list-tools").setup()
         end
     },
+    {
+      "benomahony/uv.nvim",
+      opts = {
+        picker_integration = true,
+      },
+    }
 }
