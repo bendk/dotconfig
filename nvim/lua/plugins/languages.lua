@@ -10,7 +10,13 @@ return {
     {
         "neovim/nvim-lspconfig",
     },
-    "nvim-treesitter/nvim-treesitter",
+    {
+        "neovim-treesitter/nvim-treesitter",
+          dependencies = { 'neovim-treesitter/treesitter-parser-registry' },
+          lazy = false,
+          build = ':TSUpdate',
+    },
+    "nvim-treesitter/nvim-treesitter-textobjects",
     {
         "ray-x/lsp_signature.nvim",
         config = function()

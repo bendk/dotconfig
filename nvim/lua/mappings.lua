@@ -23,9 +23,9 @@ map.map('n', 'gfp', map.command('cpf')) -- "Quickfix file-prev"
 map.map('n', 'gfn', map.command('cnf')) -- "Quickfix file-next"
 map.map('n', 'gcc', map.command('cc')) -- "Quickfix current"
 map.map('n', 'gco', map.command('copen')) -- "Quickfix show"
-map.map('n', 'ggp', map.command_lua('vim.diagnostic.goto_prev()'))
-map.map('n', 'ggn', map.command_lua('vim.diagnostic.goto_next()'))
-map.map('n', 'ggo', map.command_lua('vim.diagnostic.open_float()'))
+map.map('n', 'ggp', map.command_lua('vim.diagnostic.jump({count=-1})'))
+map.map('n', 'ggn', map.command_lua('vim.diagnostic.jump({count=1})'))
+map.map('n', 'ggo', map.command_lua('vim.diagnostic.open_float({border="single"})'))
 map.map('n', 'gd', map.command_lua('vim.lsp.buf.definition()'))
 map.map('n', 'gi', map.command_lua('vim.lsp.buf.implementation()'))
 map.map('n', 'gr', map.command_lua('vim.lsp.buf.references()'))
@@ -90,7 +90,6 @@ map.map('n', '<leader>cc', '<cmd>Telescope resume<cr>')
 -- Leader: Comma
 map.map('n', '<Leader>,p', '<plug>(swap-prev)')
 map.map('n', '<Leader>,n', '<plug>(swap-next)')
-map.map('nx', '<Leader>,i', '<plug>(swap-interactive)')
 map.map('nx', '<Leader>,e', map.call_lua('treesj', 'toggle()'))
 -- Leader: Spell
 map.map('n', '<leader>st', '<cmd>set spell!<cr>')

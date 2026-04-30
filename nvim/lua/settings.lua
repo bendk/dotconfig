@@ -23,3 +23,6 @@ vim.opt.grepformat='%f:%l:%c:%m,%f:%l:%m'
 -- Trailing spaces
 vim.opt.list = true
 vim.opt.listchars = 'tab:>-,trail:-'
+
+-- Diagnostics
+vim.diagnostic.config({signs=false, virtual_text={current_line=true}})
