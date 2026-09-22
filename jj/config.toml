@@ -1,0 +1,68 @@
+[user]
+name = "Ben Dean-Kawamura"
+email = "bdk@mozilla.com"
+
+[fsmonitor]
+backend = "watchman"
+
+[ui]
+#diff-formatter = ["oy", "$left", "$right"]
+
+[revsets]
+log = "ancestors(@)"
+
+[aliases]
+fetch = ["util", "exec", "--", "bash", "-c", """
+echo "origin"
+jj git fetch --remote origin
+echo "upstream"
+jj git fetch --remote upstream
+""", ""]
+
+nn = ["util", "exec", "--", "bash", "-c", """
+jj new "$@"
+jj new
+""", ""]
+
+pop = ["util", "exec", "--", "bash", "-c", """
+jj squash
+jj edit @-
+""", ""]
+
+delete-bookmark = ["util", "exec", "--", "bash", "-c", """
+BOOKMARK="${1:-@}"
+jj bookmark delete $BOOKMARK
+jj git push -b $BOOKMARK
+""", ""]
+
+squash-restore-desendants = ["restore", "--from", "@", "--into", "@-", "--restore-descendants"]
+unmerged = ["log", "-r", "roots(remote_bookmarks(remote=upstream)..mine())::"]
+work = ["log", "-r", "ancestors(roots(immutable()..mine()), 2)"]
+tree = ["util", "exec", "--", "bash", "-c", """
+set -e
+COMMIT="${1:-@}"
+jj log -r "(immutable()..${COMMIT})::"
+""", ""]
+ptree = ["util", "exec", "--", "bash", "-c", """
+set -e
+COMMIT="${1:-@}"
+jj log -r "(immutable()..${COMMIT})"
+""", ""]
+rebase-work = ["rebase", "-d", "main", "-r", "mutable() & mine()"]
+
+github-push = ["util", "exec", "--", "bash", "-c", """
+COMMIT="${1:-@-}"
+jj bookmark set tmp -r "$COMMIT" --allow-backwards
+jj git push -b tmp
+echo "https://github.com/bendk/uniffi-rs/commit/tmp/"
+""", ""]
+
+d = ["diff"]
+dr = ["diff", "--to", "@-"]
+dp = ["diff", "-r", "@-"]
+dpp = ["diff", "--from", "@--"]
+dppp = ["diff", "--from", "@---"]
+dm = ["diff", "--tool", "meld"]
+
+[templates]
+git_push_bookmark = '"bdk/push-" ++ change_id.short()'
