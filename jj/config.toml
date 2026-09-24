@@ -10,8 +10,16 @@ backend = "watchman"
 
 [revsets]
 log = "ancestors(@)"
+bookmark-advance-to = "closest_pushable(@)"
+
+[revset-aliases]
+'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
+'slice()' = 'slice(@)'
+'slice(from)' = 'ancestors(reachable(from, mutable()), 2)'
+'work()' = 'mutable() & mine()'
 
 [aliases]
+tug = ["bookmark", "advance"]
 fetch = ["util", "exec", "--", "bash", "-c", """
 echo "origin"
 jj git fetch --remote origin
@@ -29,26 +37,14 @@ jj squash
 jj edit @-
 """, ""]
 
-delete-bookmark = ["util", "exec", "--", "bash", "-c", """
-BOOKMARK="${1:-@}"
-jj bookmark delete $BOOKMARK
-jj git push -b $BOOKMARK
-""", ""]
-
 squash-restore-desendants = ["restore", "--from", "@", "--into", "@-", "--restore-descendants"]
-unmerged = ["log", "-r", "roots(remote_bookmarks(remote=upstream)..mine())::"]
-work = ["log", "-r", "ancestors(roots(immutable()..mine()), 2)"]
-tree = ["util", "exec", "--", "bash", "-c", """
+work = ["log", "-r", "ancestors(roots(work()), 2)"]
+slice = ["util", "exec", "--", "bash", "-c", """
 set -e
 COMMIT="${1:-@}"
-jj log -r "(immutable()..${COMMIT})::"
+jj log -r "slice(${COMMIT})"
 """, ""]
-ptree = ["util", "exec", "--", "bash", "-c", """
-set -e
-COMMIT="${1:-@}"
-jj log -r "(immutable()..${COMMIT})"
-""", ""]
-rebase-work = ["rebase", "-d", "main", "-r", "mutable() & mine()"]
+rebase-work = ["rebase", "-d", "main", "-r", "work()"]
 
 github-push = ["util", "exec", "--", "bash", "-c", """
 COMMIT="${1:-@-}"
