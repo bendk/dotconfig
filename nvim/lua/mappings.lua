@@ -29,9 +29,8 @@ map.map('n', 'ggo', map.command_lua('vim.diagnostic.open_float({border="single"}
 map.map('n', 'gd', map.command_lua('vim.lsp.buf.definition()'))
 map.map('n', 'gi', map.command_lua('vim.lsp.buf.implementation()'))
 map.map('n', 'gr', map.command_lua('vim.lsp.buf.references()'))
-map.map('n', 'gb', '<c-o>') -- Go back
-map.map('n', 'gf', '<c-i>') -- Go forward
 map.map('n', 'gm', '%') -- Go match
+map.map('n', 'go', '<c-w>gf') -- Goto open file
 -- x -> "eXtra actions".  These are alternative versions of normal mode commands
 map.map('', 'x', '<Nop>')
 map.map('', 'xw', '<plug>(polyword-miniword-w)')
@@ -65,9 +64,11 @@ map.map('nx', '<leader>mm', map.call_lua('markdown-list-tools', 'toggle_checkbox
 map.map('nx', '<leader>mt', map.call_lua('markdown-list-tools', 'toggle_checkbox_present()'))
 -- Visual leader
 map.map('x', '<Leader>c', '<plug>TComment_gc')
--- Leader: Documents
+-- Leader: Note documents
 map.map('n', '<leader>dt', '<cmd>edit ~/notes/mozilla/todo.md<cr>')
 map.map('n', '<leader>dl', '<cmd>edit ~/notes/mozilla/worklog.md<cr>')
+map.map('n', '<leader>dd', map.command_lua('require("notes").open_current_date()'))
+map.map('n', '<leader>ds', map.call_lua('telescope.builtin', 'find_files { cwd = "~/notes" }'))
 -- Leader: Buffer
 map.map('n', '<leader>bn', '<cmd>bn<cr>')
 map.map('n', '<leader>bp', '<cmd>bp<cr>')
@@ -82,7 +83,6 @@ map.map('n', '<leader>w<left>', '<c-w><left>')
 map.map('n', '<leader>w<right>', '<c-w><right>')
 -- Leader: Telescope
 map.map('n', '<leader>cf', '<cmd>Telescope find_files<cr>')
-map.map('n', '<leader>cn', map.call_lua('telescope.builtin', 'find_files { cwd = "~/notes" }'))
 map.map('n', '<leader>cg', '<cmd>Telescope live_grep<cr>')
 map.map('n', '<leader>cr', '<cmd>Telescope oldfiles cwd_only=true<cr>')
 map.map('n', '<leader>cm', '<cmd>Telescope commands<cr>')

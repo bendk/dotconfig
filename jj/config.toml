@@ -14,8 +14,8 @@ bookmark-advance-to = "closest_pushable(@)"
 
 [revset-aliases]
 'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
-'slice()' = 'slice(@)'
-'slice(from)' = 'ancestors(reachable(from, mutable()), 2)'
+'tree()' = 'tree(@)'
+'tree(from)' = 'ancestors(reachable(from, mutable()), 2)'
 'work()' = 'mutable() & mine()'
 
 [aliases]
@@ -39,10 +39,10 @@ jj edit @-
 
 squash-restore-desendants = ["restore", "--from", "@", "--into", "@-", "--restore-descendants"]
 work = ["log", "-r", "ancestors(roots(work()), 2)"]
-slice = ["util", "exec", "--", "bash", "-c", """
+tree = ["util", "exec", "--", "bash", "-c", """
 set -e
 COMMIT="${1:-@}"
-jj log -r "slice(${COMMIT})"
+jj log -r "tree(${COMMIT})"
 """, ""]
 rebase-work = ["rebase", "-d", "main", "-r", "work()"]
 
