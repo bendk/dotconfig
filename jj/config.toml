@@ -44,7 +44,11 @@ set -e
 COMMIT="${1:-@}"
 jj log -r "tree(${COMMIT})"
 """, ""]
-rebase-work = ["rebase", "-d", "main", "-r", "work()"]
+
+rebase-work = ["util", "exec", "--", "bash", "-c", """
+jj rebase -r 'work() & descendants(main-local)' -d main
+jj bookmark set main-local -r main
+""", ""]
 
 github-push = ["util", "exec", "--", "bash", "-c", """
 COMMIT="${1:-@-}"
